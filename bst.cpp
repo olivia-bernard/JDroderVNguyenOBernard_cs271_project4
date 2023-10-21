@@ -1,3 +1,7 @@
+#include <iostream>
+#include "header.h"
+using namespace std;
+
 // void bst.empty()
 // void insert(d, k)
 // T get(k) - gets the DATA associated with k
