@@ -41,6 +41,7 @@ class BTS
     T2 min_key(BST<T1, T2> bst);
     T2 successor(BST<T1, T2> bst);
     string in_order();
+    string to_string();
 
     private:
     Node<T1, T2>* root;
@@ -49,6 +50,7 @@ class BTS
     void in_order_helper(string s, Node* x);
     void traverse_max_data(T1 data, Node<T1, T2>* x);
     void traverse_min_data(T1 data, Node<T1, T2>* x);
-    
+    void in_order_helper(ostream& s, Node<T1, T2>* x);
+    void traverse(Node<T1, T2>* root, ostream& s)
 }
 
