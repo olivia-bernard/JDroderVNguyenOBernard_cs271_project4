@@ -14,3 +14,9 @@ using namespace std;
 // void trim(low, high)
 
 //push test
+
+int main()
+{
+    //temporary
+    return 0;
+}
