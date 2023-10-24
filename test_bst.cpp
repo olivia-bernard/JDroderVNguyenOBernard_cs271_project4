@@ -532,6 +532,7 @@ void test_remove()
         {
             cout << "Incorrect result of removing 0 from empty BST. Expected empty string but got : " << bst_str << endl;
         }
+        cout << "here" << endl;
         BST<string, float> str_fl;
         str_fl.remove(-10.5);
         bst_str = str_fl.to_string();
@@ -1753,7 +1754,7 @@ int main() {
     test_empty();
     test_insert();
     test_get();
-    //test_remove(); //flt
+    test_remove(); //flt
     //test_max_data(); //errors
     test_max_key(); 
     //test_min_data(); //errors

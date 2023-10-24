@@ -14,7 +14,7 @@ using namespace std;
 template <typename D, typename K>
 BST<D, K>* create_bst(const string& fname) 
 {
-    BST<string, string>* bst = new BST<string, string>(); // Create new instance of a BST for binary-to-hex mapping
+    BST<D, K>* bst = new BST<D, K>(); // Create new instance of a BST for binary-to-hex mapping
     ifstream file(fname); // open csv file
 
     if (!file.is_open())  // check if file was opened successfully (defensive programming!!)
@@ -63,8 +63,9 @@ string convert(BST<D, K>* bst, string bin)
 int main()
 {
     BST<string,string>* bst1 = create_bst<string,string>("binhex.txt");
-    string bin1 = "111010100101";
-    string expected_hex1 = "EA5";
+    // string bin1 = "111010100101";
+    // string expected_hex1 = "EA5";
+    cout << "here" << endl;
 
     //string hex1 = convert<string,string>(bst1, bin1);
     //delete bst1;

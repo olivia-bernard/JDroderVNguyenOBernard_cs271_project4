@@ -9,44 +9,9 @@
 
 using namespace std;
 
-
-//=================================================
-// Node class
-// =================================================
-
-template <typename T1, typename T2>
-Node<T1, T2>::Node(const T1& d, const T2& k) {
-    data = d;
-    key = k;
-    left = NULL;
-    right = NULL;
-    p = NULL;
-}
-
-template <typename T1, typename T2>
-T1 Node<T1, T2>::get_data(){
-    return data;
-}
-
-template <typename T1, typename T2>
-T2 Node<T1, T2>::get_key(){
-    return key;
-}
-
 //=================================================
 // BST class
 //=================================================
-
-template <typename T1, typename T2>
-BST<T1, T2>::BST(void){
-    root = NULL;
-}
-
-template <typename T1, typename T2>
-BST<T1, T2>::~BST(){
-    // root = NULL;
-    delete root;
-}
 
 template <typename T1, typename T2>
 bool BST<T1, T2>::empty(){
@@ -108,9 +73,9 @@ void BST<T1, T2>::remove(T2 k){
     Node<T1, T2>* x = search(k); // if the bst is empty, error thrown here
     // put in if x is null
     if (x == NULL){
-        throw std::runtime_error("Error");
+        return;
     }
-    if (x->p == NULL){ // when x is the root of the tree
+    else if (x->p == NULL){ // when x is the root of the tree
         root = NULL;
         return;
     }

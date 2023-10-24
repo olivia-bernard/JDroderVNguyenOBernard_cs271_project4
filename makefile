@@ -3,16 +3,18 @@
 # target: dependencies
 # 	action
 
-all: test usecase
+all: test 
 
 test: test_bst.cpp 
 	g++ test_bst.cpp -o test
 
+#usecase: usecase.cpp g++ usecase.cpp -o usecase
+
 clean:
-	rm test
+	rm test 
 
 # test: bst.cpp #change to test_bst later
-# 	g++ bst.cpp -o test
+#	g++ bst.cpp -o test
 
 # usecase: main.cpp
 # 	g++ main.cpp -o usecase

@@ -11,8 +11,8 @@ using namespace std;
 // template<typename T1, typename T2>
 // class Node;
 
-// #ifndef NODE_H
-// #define NODE_H
+#ifndef NODE_H
+#define NODE_H
 
 template<typename T1, typename T2>
 class Node
@@ -21,9 +21,18 @@ class Node
     friend class BST;
 
     public:
-        Node(const T1& d, const T2& k); //constructor
-        T1 get_data();
-        T2 get_key();
+        Node(const T1& d, const T2& k) //constructor
+        {
+            data = d;
+            key = k;
+            left = NULL;
+            right = NULL;
+            p = NULL;
+        };
+        T1 get_data()
+        {return data;};
+        T2 get_key()
+        {return key;};
         
 
 
@@ -49,8 +58,10 @@ template <typename T1, typename T2> //T1: data, T2: key
 class BST
 {
     public:
-        BST(void); //constructor
-        ~BST(); //deconstructor
+        BST(void)
+        {root = NULL;}; //constructor
+        ~BST()
+        {delete root;}; //deconstructor
 
         bool empty();
         void insert(const T1& d, const T2& k);
@@ -77,4 +88,4 @@ class BST
         
 };
 
-// #endif
+#endif
