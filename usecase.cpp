@@ -60,28 +60,8 @@ string convert(BST<D, K>* bst, string bin)
     return hex; // return hex val
 }
 
-int main() 
+int main()
 {
-    // Create a BST from the txt (csv) file
-    BST<string, string>* bst = create_bst("binhex.txt");
-
-    if (bst == nullptr) // check if bst creation worked (defensive programming!!)
-    {
-        return 1; // exit w/ error code
-    }
-
-    // Ask user for binary input
-    string bin;
-    cout << "Enter binary representation for conversion: ";
-    cin >> bin;
-
-    // convert binary to hexadecimal using BST
-    string hex = convert(bst, bin);
-
-    // Display result
-    cout << "Hexadecimal representation of " << bin << " is " << hex << endl;
-
-    delete bst;  // Clean up BST
-
+    //temp stuff
     return 0;
 }
