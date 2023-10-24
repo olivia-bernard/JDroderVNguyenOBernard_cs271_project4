@@ -1420,22 +1420,42 @@ void test_min_key()
 void test_successor() 
 {
     try {
+        int succ_int;
+        string succ_str;
+        float succ_fl;
+
+        BST<string, string> ss;
+        succ_str = ss.successor("hi");
+        if(succ_str != "") 
+        {
+            cout << "Incorrect result of successor of empty string. Expected nothing but got : " << succ_str << endl;
+        }
+        BST<string, int> si;
+        BST<string, float> sf;
+        BST<int, string> is;
+        BST<int, int> ii;
+        BST<int, float> i_f;
+        BST<float, string> fs;
+        BST<float, int> fi;
+        BST<float, float> ff;
+
+
         int vals[10] = {5, 2, 7, 1, 3, 4, 6, 9, 8, 10};
         BST<string, int> balanced_bst;
         for(int i = 0; i < 10; i++) {
             balanced_bst.insert(to_string(vals[i]) + " data", vals[i]);
         }
-        int succ = balanced_bst.successor(4);
-        if(succ != 5) {
-            cout << "Incorrect result of successor of 4. Expected 5 but got : " << succ << endl;
+        succ_int = balanced_bst.successor(4);
+        if(succ_int != 5) {
+            cout << "Incorrect result of successor of 4. Expected 5 but got : " << succ_int << endl;
         }
-        succ = balanced_bst.successor(7);
-        if(succ != 8) {
-            cout << "Incorrect result of successor of 7. Expected 8 but got : " << succ << endl;
+        succ_int = balanced_bst.successor(7);
+        if(succ_int != 8) {
+            cout << "Incorrect result of successor of 7. Expected 8 but got : " << succ_int << endl;
         }
-        succ = balanced_bst.successor(10);
-        if(succ != 0) {
-            cout << "Incorrect result of successor of 10. Expected 0 but got : " << succ << endl;
+        succ_int = balanced_bst.successor(10);
+        if(succ_int != 0) {
+            cout << "Incorrect result of successor of 10. Expected 0 but got : " << succ_int << endl;
         }
     } catch(exception& e) {
         cerr << "Error in determining successor in bst : " << e.what() << endl;
