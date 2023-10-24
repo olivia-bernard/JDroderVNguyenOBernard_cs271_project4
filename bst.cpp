@@ -214,12 +214,12 @@ T1 BST<T1, T2>::traverse_max_data(T1& data, Node<T1, T2>* x){
         return data;
     }
     else{
-        T1 max_left = traverse_min_data(data, x->left);
+        T1 max_left = traverse_max_data(data, x->left);
         if (x->data > max_left){
-            return traverse_min_data(x->data, x->right);
+            return traverse_max_data(x->data, x->right);
         }   
         else{
-            return traverse_min_data(max_left, x->right);
+            return traverse_max_data(max_left, x->right);
         }
         }
 }
