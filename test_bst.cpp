@@ -1,10 +1,8 @@
 #include <stdlib.h>
 #include <iostream>
 #include <math.h>
-#include "usecase.cpp"
+//#include "usecase.cpp"
 #include "bst.cpp"
-
-
 using namespace std;
 
 void test_empty() 
@@ -122,7 +120,7 @@ void test_empty()
         {
             cout << "Incorrect empty result." << endl;
         }
-        fl_int.remove(0)
+        fl_int.remove(0);
         if(!fl_int.empty()) 
         {
             cout << "Incorrect empty result." << endl;
@@ -256,7 +254,7 @@ void test_insert()
         {
             mixed.insert(10, misc[i]);
         }
-        bst_str = misc.to_string();
+        bst_str = mixed.to_string();
         if(bst_str != "? :.. confusion /boogie @  ") {
             cout << "Incorrect result of inserting keys {? confusion :.. @ /boogie  }. Expected ? :.. confusion /boogie @   but got : " << bst_str << endl;
         }
@@ -265,9 +263,9 @@ void test_insert()
         int biggies[5] = {900000, 49920, 100335, 4902304, 3190855};
         for(int i = 0; i < 5; i++) 
         {
-            mixed.insert("wow big", biggies[i]);
+            big_nums.insert("wow big", biggies[i]);
         }
-        bst_str = biggies.to_string();
+        bst_str = big_nums.to_string();
         if(bst_str != "900000 49920 4902304 100335 3190855") {
             cout << "Incorrect result of inserting keys {900000, 49920, 100335, 4902304, 3190855}. Expected 900000 49920 4902304 100335 3190855 but got : " << bst_str << endl;
         }
@@ -305,50 +303,51 @@ void test_get()
         string val;
         float fl;
         int num;
+        string fl_str;
 
         BST<string, int> bst_1;
         val = bst_1.get(0);
         if(val!="") {
-            cout << "Incorrect get result from empty bst. Expected 0 but got " << val << endl;
+            cout << "Incorrect get result from empty bst. Expected empty string but got " << val << endl;
         }
         BST<string, string> bst_2;
         val = bst_2.get("nope");
         if(val!="") {
-            cout << "Incorrect get result from empty bst. Expected 0 but got " << val << endl;
+            cout << "Incorrect get result from empty bst. Expected empty string but got " << val << endl;
         }
         BST<string, float> bst_3;
         val = bst_3.get(0.0);
         if(val!="") {
-            cout << "Incorrect get result from empty bst. Expected 0 but got " << val << endl;
+            cout << "Incorrect get result from empty bst. Expected empty string but got " << val << endl;
         }
         BST<int, string> bst_4;
         num = bst_4.get("nope");
-        if(num!="") {
+        if(num!=0) {
             cout << "Incorrect get result from empty bst. Expected 0 but got " << num << endl;
         }
         BST<int, float> bst_5;
-        num = bst_5.get(0.0);
-        if(num!="") {
+        num = bst_5.get(0.1);
+        if(num!=0) {
             cout << "Incorrect get result from empty bst. Expected 0 but got " << num << endl;
         }
         BST<int, int> bst_6;
         num = bst_6.get(0);
-        if(num!="") {
+        if(num!=0) {
             cout << "Incorrect get result from empty bst. Expected 0 but got " << num << endl;
         }
         BST<float, string> bst_7;
         fl = bst_7.get("nope");
-        if(fl!="") {
+        if(fl!=0) {
             cout << "Incorrect get result from empty bst. Expected 0 but got " << fl << endl;
         }
         BST<float, int> bst_8;
         fl = bst_8.get(0);
-        if(fl!="") {
+        if(fl!=0) {
             cout << "Incorrect get result from empty bst. Expected 0 but got " << fl << endl;
         }
         BST<float, float> bst_9;
         fl = bst_9.get(0.0);
-        if(fl!="") {
+        if(fl!=0) {
             cout << "Incorrect get result from empty bst. Expected 0 but got " << fl << endl;
         }
 
@@ -396,17 +395,20 @@ void test_get()
         bubbly.insert(10.4, "kombucha");
         bubbly.insert(25.3, "root beer");
         fl = bubbly.get("kombucha");
-        if(fl != 10.4)
+        fl_str = std::to_string(fl);
+        if(fl_str != "10.4")
         {
             cout << "Incorrect get result. Expected \"10.4\" but got : " << fl << endl;
         }
         fl = bubbly.get("sprite");
-        if(fl != 12.5)
+        fl_str = std::to_string(fl);
+        if(fl_str != "12.5")
         {
             cout << "Incorrect get result. Expected \"12.5\" but got : " << fl << endl;
         }
         fl = bubbly.get("mountain dew");
-        if(fl != 0) //no mtn dew in bst
+        fl_str = std::to_string(fl);
+        if(fl_str != "0") //no mtn dew in bst
         {
             cout << "Incorrect get result. Expected \"0\" because key is not in BST but got : " << fl << endl;
         }
@@ -421,9 +423,9 @@ void test_get()
             cout << "Incorrect get result. Expected \"twenty\" but got : " << val << endl;
         }
         val = numbers2.get(1001);
-        if(val != 0) //no 1001 in bst
+        if(val != "") //no 1001 in bst
         {
-            cout << "Incorrect get result. Expected \"0\" because key is not in BST but got : " << val << endl;
+            cout << "Incorrect get result. Expected empty string because key is not in BST but got : " << val << endl;
         }
 
         BST<float, int> deci;
@@ -431,12 +433,14 @@ void test_get()
         deci.insert(15.5, 15);
         deci.insert(90.1, 90);
         fl = deci.get(10);
-        if(fl != 10.9) 
+        fl_str = std::to_string(fl);
+        if(fl_str != "10.9") 
         {
             cout << "Incorrect get result. Expected \"10.9\" but got : " << fl << endl;
         }
         fl = deci.get(19);
-        if(fl != 0) //no 19 in bst
+        fl_str = std::to_string(fl);
+        if(fl_str != "0") //no 19 in bst
         {
             cout << "Incorrect get result. Expected \"0\" because key is not in BST but got : " << fl << endl;
         }
@@ -492,12 +496,14 @@ void test_get()
         too_floaty.insert(80.5, 1390.0);
         too_floaty.insert(78.3, 1.1);
         fl = too_floaty.get(1.1);
-        if(fl != 78.3)
+        fl_str = std::to_string(fl);
+        if(fl_str != "78.3")
         {
             cout << "Incorrect get result. Expected \"1.1\" because key is not in BST but got : " << fl << endl;
         }
         fl = too_floaty.get(16.6);
-        if(fl != 0.0) //no 16.6 in bst
+        fl_str = std::to_string(fl);
+        if(fl_str != "0") //no 16.6 in bst
         {
             cout << "Incorrect get result. Expected \"0.0\" because key is not in BST but got : " << fl << endl;
         }
@@ -689,6 +695,7 @@ void test_remove()
             cout << "Incorrect result of removing 6 from BST. Expected 4 2 8 7 10 5 but got : " << bst_str << endl;
         }
         nums.remove(4);
+        bst_str = nums.to_string();
         if(bst_str != "8 2 7 5 10") 
         {
             cout << "Incorrect result of removing 4 from BST. Expected 8 2 7 5 10 but got : " << bst_str << endl;
@@ -701,11 +708,13 @@ void test_remove()
             large.insert(5000.5, big[i]);
         }
         large.remove(19303);
+        bst_str = large.to_string();
         if(bst_str != "13053 2390 20020") 
         {
             cout << "Incorrect result of removing 19303 from BST. Expected 13053 2390 20020 but got : " << bst_str << endl;
         }
         large.remove(2390);
+        bst_str = large.to_string();
         if(bst_str != "13053 20020") 
         {
             cout << "Incorrect result of removing 2390 from BST. Expected 13053 20020 but got : " << bst_str << endl;
@@ -715,9 +724,10 @@ void test_remove()
         int negativos[6] = {0, -1500, 2350, -90, 500, 8};
         for (int i=0; i<6; i++)
         {
-            large.insert("negs", negativos[i]);
+            n.insert("negs", negativos[i]);
         }
-        large.remove(0);
+        n.remove(0);
+        bst_str = n.to_string();
         if(bst_str != "2350 -1500 500 -90 8") 
         {
             cout << "Incorrect result of removing 0 from BST. Expected 2350 -1500 500 -90 8 but got : " << bst_str << endl;
@@ -901,53 +911,55 @@ void test_max_data()
 void test_max_key() 
 {
     try {
-        int max_k;
+        int max_int;
+        string max_str;
+        float max_fl;
 
         //empties
         BST<string, string> ss;
-        min_k = ss.min_key() ;
-        if(min_k != 0) {
-            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_k << endl;
+        max_str = ss.max_key() ;
+        if(max_str != "") {
+            cout << "Incorrect result of max_key of empty BST. Expected empty string but got : " << max_str << endl;
         }
         BST<string, int> si;
-        min_k = si.min_key() ;
-        if(min_k != 0) {
-            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_k << endl;
+        max_int = si.max_key() ;
+        if(max_int != 0) {
+            cout << "Incorrect result of max_key of empty BST. Expected 0 but got : " << max_int << endl;
         }
         BST<string, float> sf;
-        min_k = sf.min_key() ;
-        if(min_k != 0) {
-            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_k << endl;
+        max_fl = sf.max_key() ;
+        if(max_fl != 0) {
+            cout << "Incorrect result of max_key of empty BST. Expected 0 but got : " << max_fl << endl;
         }
         BST<int, string> is;
-        min_k = is.min_key() ;
-        if(min_k != 0) {
-            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_k << endl;
+        max_str = is.max_key() ;
+        if(max_str != "") {
+            cout << "Incorrect result of max_key of empty BST. Expected empty string but got : " << max_str << endl;
         }
         BST<int, int> ii;
-        min_k = ii.min_key() ;
-        if(min_k != 0) {
-            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_k << endl;
+        max_int = ii.max_key() ;
+        if(max_int != 0) {
+            cout << "Incorrect result of max_key of empty BST. Expected 0 but got : " << max_int << endl;
         }
         BST<int, float> i_f;
-        min_k = i_f.min_key() ;
-        if(min_k != 0) {
-            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_k << endl;
+        max_fl = i_f.max_key() ;
+        if(max_fl != 0) {
+            cout << "Incorrect result of max_key of empty BST. Expected 0 but got : " << max_fl << endl;
         }
         BST<float, string> fs;
-        min_k = fs.min_key() ;
-        if(min_k != 0) {
-            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_k << endl;
+        max_str = fs.max_key() ;
+        if(max_str != "") {
+            cout << "Incorrect result of max_key of empty BST. Expected empty string but got : " << max_str << endl;
         }
         BST<float, int> fi;
-        min_k = fi.min_key() ;
-        if(min_k != 0) {
-            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_k << endl;
+        max_int = fi.max_key() ;
+        if(max_int != 0) {
+            cout << "Incorrect result of max_key of empty BST. Expected 0 but got : " << max_int << endl;
         }
         BST<float, float> ff;
-        min_k = ff.min_key() ;
-        if(min_k != 0) {
-            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_k << endl;
+        max_fl = ff.max_key() ;
+        if(max_fl != 0) {
+            cout << "Incorrect result of max_key of empty BST. Expected 0 but got : " << max_fl << endl;
         }
 
 
@@ -959,9 +971,9 @@ void test_max_key()
         for(int i = 0; i < 10; i++) {
             balanced_bst.insert(to_string(vals[i]) + " data", vals[i]);
         }
-        min_k = balanced_bst.min_key() ;
-        if(min_k != 10) {
-            cout << "Incorrect result of min_key. Expected 10 but got : " << min_k << endl;
+        max_int = balanced_bst.max_key() ;
+        if(max_int != 10) {
+            cout << "Incorrect result of max_key. Expected 10 but got : " << max_int << endl;
         }
 
         int vals2[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 20};
@@ -969,9 +981,9 @@ void test_max_key()
         for(int i = 0; i < 10; i++) {
             unbalanced_bst.insert(to_string(vals2[i]) + " data", vals2[i]);
         }
-        min_k = unbalanced_bst.min_key() ;
-        if(min_k != 20) {
-            cout << "Incorrect result of min_key. Expected 20 but got : " << min_k << endl;
+        max_int = unbalanced_bst.max_key() ;
+        if(max_int != 20) {
+            cout << "Incorrect result of max_key. Expected 20 but got : " << max_int << endl;
         }
 
         BST<string, int> unbalanced_neg;
@@ -979,9 +991,9 @@ void test_max_key()
         for(int i = 0; i < 5; i++) {
             unbalanced_neg.insert(to_string(unb[i]) + " data", unb[i]);
         }
-        min_k = unbalanced_neg.min_key() ;
-        if(min_k != 0) {
-            cout << "Incorrect result of min_key. Expected 0 but got : " << min_k << endl;
+        max_int = unbalanced_neg.max_key() ;
+        if(max_int != 0) {
+            cout << "Incorrect result of max_key. Expected 0 but got : " << max_int << endl;
         }
 
         BST<string, int> pos_unb;
@@ -989,28 +1001,27 @@ void test_max_key()
         for(int i = 0; i < 5; i++) {
             pos_unb.insert(to_string(unb2[i]) + " data", unb2[i]);
         }
-        min_k = pos_unb.min_key() ;
-        if(min_k != 4) 
+        max_int = pos_unb.max_key() ;
+        if(max_int != 4) 
         {
-            cout << "Incorrect result of min_key. Expected 4 but got : " << min_k << endl;
+            cout << "Incorrect result of max_key. Expected 4 but got : " << max_int << endl;
         }
 
-        string str_max_k;
         BST<string, string> pride;
         pride.insert("bisexual", "purple");
         pride.insert("gay", "green");
         pride.insert("lesbian", "orange");
         pride.insert("straight", "white");
-        str_min_k = pride.min_key() ;
-        if(str_min_k != "white") 
+        max_str = pride.max_key() ;
+        if(max_str != "white") 
         {
-            cout << "Incorrect result of min_key. Expected white but got : " << str_min_k << endl;
+            cout << "Incorrect result of max_key. Expected white but got : " << max_str << endl;
         }
         pride.insert("wait, that's not a flag", "zebra");
-        str_min_k = pride.min_key() ;
-        if(str_min_k != "zebra") 
+        max_str = pride.max_key() ;
+        if(max_str != "zebra") 
         {
-            cout << "Incorrect result of min_key. Expected zebra but got : " << str_min_k << endl;
+            cout << "Incorrect result of max_key. Expected zebra but got : " << max_str << endl;
         }
 
         BST<int, string> alph;
@@ -1018,27 +1029,30 @@ void test_max_key()
         alph.insert(5, "E");
         alph.insert(1, "A");
         alph.insert(10, "J");
-        str_min_k = alph.min_key() ;
-        if(str_min_k != "J") 
+        max_str = alph.max_key() ;
+        if(max_str != "J") 
         {
-            cout << "Incorrect result of min_key. Expected \"J\" but got : " << str_min_k << endl;
+            cout << "Incorrect result of max_key. Expected \"J\" but got : " << max_str << endl;
         }
         alph.remove("J");
-        str_min_k = alph.min_key() ;
-        if(str_min_k != "F") 
+        max_str = alph.max_key() ;
+        if(max_str != "F") 
         {
-            cout << "Incorrect result of min_key. Expected \"F\" but got : " << str_min_k << endl;
+            cout << "Incorrect result of max_key. Expected \"F\" but got : " << max_str << endl;
         }
+
+        string fl_str;
 
         BST<int, float> floaty;
         floaty.insert(5, 5.1);
         floaty.insert(200, 0.1);
         floaty.insert(50000, 0.3);
         floaty.insert(0, 15.5);
-        min_k = floaty.min_key() ;
-        if(min_k != 15.5) 
+        max_fl = floaty.max_key();
+        fl_str = std::to_string(max_fl);
+        if(fl_str != "15.5") 
         {
-            cout << "Incorrect result of min_key. Expected \"15.5\" but got : " << min_k << endl;
+            cout << "Incorrect result of max_key. Expected \"15.5\" but got : " << max_fl << endl;
         }
 
         BST<string, string> punct;
@@ -1048,30 +1062,32 @@ void test_max_key()
         punct.insert("little a", "a");
         punct.insert("interrobang", "?!");
         punct.insert("tilde", "~");
-        str_min_k = punct.min_key() ;
-        if(str_min_k != "~") 
+        max_str = punct.max_key() ;
+        if(max_str != "~") 
         {
-            cout << "Incorrect result of min_key. Expected \"~\" but got : " << str_min_k << endl;
+            cout << "Incorrect result of max_key. Expected \"~\" but got : " << max_str << endl;
         }
         punct.remove("~");
-        str_min_k = punct.min_key() ;
-        if(str_min_k != "a") 
+        max_str = punct.max_key() ;
+        if(max_str != "a") 
         {
-            cout << "Incorrect result of min_key. Expected \"a\" but got : " << str_min_k << endl;
+            cout << "Incorrect result of max_key. Expected \"a\" but got : " << max_str << endl;
         }
 
         BST<float, float> one;
         one.insert(1.1, 13.4);
-        min_k = one.min_key() ;
-        if(min_k != 13.4) 
+        max_fl = one.max_key();
+        fl_str = std::to_string(max_fl);
+        if(fl_str != "13.4") 
         {
-            cout << "Incorrect result of min_key. Expected \"13.4\" but got : " << min_k << endl;
+            cout << "Incorrect result of max_key. Expected \"13.4\" but got : " << max_fl << endl;
         }
         one.remove(13.4);
-        min_k = one.min_key() ;
-        if(min_k != 0) 
+        max_fl = one.max_key();
+        fl_str = std::to_string(max_fl);
+        if(fl_str != "0") 
         {
-            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_k << endl;
+            cout << "Incorrect result of max_key of empty BST. Expected 0 but got : " << max_fl << endl;
         }
 
     } catch(exception& e) {
@@ -1117,7 +1133,7 @@ void test_min_data()
             cout << "Incorrect result finding min_data of empty BST. Expected 0 but got : " << min_str << endl;
         }
         BST<int, string> int_str;
-        max_min_strstr = int_str.min_data();
+        min_str = int_str.min_data();
         if(min_str != "") {
             cout << "Incorrect result finding min_data of empty BST. Expected nothing but got : " << min_str << endl;
         }
@@ -1170,9 +1186,9 @@ void test_min_data()
         for(int i = 0; i < 5; i++) {
             pos_unb.insert(to_string(unb2[i]) + " data", unb2[i]);
         }
-        max_str = pos_unb.max_data();
-        if(max_str != "4 data") {
-            cout << "Incorrect result of max_data. Expected \"4 data\" but got : " << max_str << endl;
+        min_str = pos_unb.max_data();
+        if(min_str != "4 data") {
+            cout << "Incorrect result of max_data. Expected \"4 data\" but got : " << min_str << endl;
         }
 
         BST<string, string> fruit;
@@ -1225,7 +1241,7 @@ void test_min_data()
         BST<string, float> whatever;
         whatever.insert("boo", 3155.5);
         whatever.insert("booga", 3155.4);
-        whatever.insert("rahrah", 3200.0;)
+        whatever.insert("rahrah", 3200.0);
         whatever.insert("gooblegooble", 15004.1);
         whatever.insert("ahaha", 2353.2);
         min_str = whatever.min_data();
@@ -1242,53 +1258,55 @@ void test_min_data()
 void test_min_key() 
 {
     try {
-        int min_k;
+        int min_int;
+        string min_str;
+        float min_fl;
 
         //empties
         BST<string, string> ss;
-        min_k = ss.min_key();
-        if(min_k != 0) {
-            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_k << endl;
+        min_str = ss.min_key();
+        if(min_str != "") {
+            cout << "Incorrect result of min_key of empty BST. Expected empty string but got : " << min_str << endl;
         }
         BST<string, int> si;
-        min_k = si.min_key();
-        if(min_k != 0) {
-            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_k << endl;
+        min_int = si.min_key();
+        if(min_int != 0) {
+            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_int << endl;
         }
         BST<string, float> sf;
-        min_k = sf.min_key();
-        if(min_k != 0) {
-            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_k << endl;
+        min_fl = sf.min_key();
+        if(min_fl != 0) {
+            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_fl << endl;
         }
         BST<int, string> is;
-        min_k = is.min_key();
-        if(min_k != 0) {
-            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_k << endl;
+        min_str = is.min_key();
+        if(min_str != "") {
+            cout << "Incorrect result of min_key of empty BST. Expected empty string but got : " << min_str << endl;
         }
         BST<int, int> ii;
-        min_k = ii.min_key();
-        if(min_k != 0) {
-            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_k << endl;
+        min_int = ii.min_key();
+        if(min_int != 0) {
+            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_int << endl;
         }
         BST<int, float> i_f;
-        min_k = i_f.min_key();
-        if(min_k != 0) {
-            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_k << endl;
+        min_fl = i_f.min_key();
+        if(min_fl != 0) {
+            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_fl << endl;
         }
         BST<float, string> fs;
-        min_k = fs.min_key();
-        if(min_k != 0) {
-            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_k << endl;
+        min_str = fs.min_key();
+        if(min_str != "") {
+            cout << "Incorrect result of min_key of empty BST. Expected empty string but got : " << min_str << endl;
         }
         BST<float, int> fi;
-        min_k = fi.min_key();
-        if(min_k != 0) {
-            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_k << endl;
+        min_int = fi.min_key();
+        if(min_int != 0) {
+            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_int << endl;
         }
         BST<float, float> ff;
-        min_k = ff.min_key();
-        if(min_k != 0) {
-            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_k << endl;
+        min_fl = ff.min_key();
+        if(min_fl != 0) {
+            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_fl << endl;
         }
 
 
@@ -1300,9 +1318,9 @@ void test_min_key()
         for(int i = 0; i < 10; i++) {
             balanced_bst.insert(to_string(vals[i]) + " data", vals[i]);
         }
-        min_k = balanced_bst.min_key();
-        if(min_k != 1) {
-            cout << "Incorrect result of min_key. Expected 1 but got : " << min_k << endl;
+        min_int = balanced_bst.min_key();
+        if(min_int != 1) {
+            cout << "Incorrect result of min_key. Expected 1 but got : " << min_int << endl;
         }
 
         int vals2[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 20};
@@ -1310,9 +1328,9 @@ void test_min_key()
         for(int i = 0; i < 10; i++) {
             unbalanced_bst.insert(to_string(vals2[i]) + " data", vals2[i]);
         }
-        min_k = unbalanced_bst.min_key() ;
-        if(min_k != 1) {
-            cout << "Incorrect result of min_key. Expected 1 but got : " << min_k << endl;
+        min_int = unbalanced_bst.min_key() ;
+        if(min_int != 1) {
+            cout << "Incorrect result of min_key. Expected 1 but got : " << min_int << endl;
         }
 
         BST<string, int> unbalanced_neg;
@@ -1320,9 +1338,9 @@ void test_min_key()
         for(int i = 0; i < 5; i++) {
             unbalanced_neg.insert(to_string(unb[i]) + " data", unb[i]);
         }
-        min_k = unbalanced_neg.min_key() ;
-        if(min_k != -4) {
-            cout << "Incorrect result of min_key. Expected -4 but got : " << min_k << endl;
+        min_int = unbalanced_neg.min_key() ;
+        if(min_int != -4) {
+            cout << "Incorrect result of min_key. Expected -4 but got : " << min_int << endl;
         }
 
         BST<string, int> pos_unb;
@@ -1330,10 +1348,10 @@ void test_min_key()
         for(int i = 0; i < 5; i++) {
             pos_unb.insert(to_string(unb2[i]) + " data", unb2[i]);
         }
-        min_k = pos_unb.min_key() ;
-        if(min_k != 0) 
+        min_int = pos_unb.min_key() ;
+        if(min_int != 0) 
         {
-            cout << "Incorrect result of min_key. Expected 0 but got : " << min_k << endl;
+            cout << "Incorrect result of min_key. Expected 0 but got : " << min_int << endl;
         }
 
         string str_min_k;
@@ -1342,16 +1360,16 @@ void test_min_key()
         pride.insert("gay", "green");
         pride.insert("lesbian", "orange");
         pride.insert("straight", "white");
-        str_min_k = pride.min_key() ;
-        if(str_min_k != "green") 
+        min_str = pride.min_key() ;
+        if(min_str != "green") 
         {
-            cout << "Incorrect result of min_key. Expected green but got : " << str_min_k << endl;
+            cout << "Incorrect result of min_key. Expected green but got : " << min_str << endl;
         }
         pride.insert("asexual", "a color");
-        str_min_k = pride.min_key() ;
-        if(str_min_k != "a color") 
+        min_str = pride.min_key() ;
+        if(min_str != "a color") 
         {
-            cout << "Incorrect result of min_key. Expected a color but got : " << str_min_k << endl;
+            cout << "Incorrect result of min_key. Expected a color but got : " << min_str << endl;
         }
 
         BST<int, string> alph;
@@ -1359,16 +1377,16 @@ void test_min_key()
         alph.insert(5, "E");
         alph.insert(1, "A");
         alph.insert(10, "J");
-        str_min_k = alph.min_key() ;
-        if(str_min_k != "A") 
+        min_str = alph.min_key() ;
+        if(min_str != "A") 
         {
             cout << "Incorrect result of min_key. Expected \"A\" but got : " << str_min_k << endl;
         }
         alph.remove("A");
-        str_min_k = alph.min_key() ;
-        if(str_min_k != "E") 
+        min_str = alph.min_key() ;
+        if(min_str != "E") 
         {
-            cout << "Incorrect result of min_key. Expected \"E\" but got : " << str_min_k << endl;
+            cout << "Incorrect result of min_key. Expected \"E\" but got : " << min_str << endl;
         }
 
         BST<int, float> floaty;
@@ -1376,10 +1394,11 @@ void test_min_key()
         floaty.insert(200, 0.1);
         floaty.insert(50000, 0.3);
         floaty.insert(0, 15.5);
-        min_k = floaty.min_key() ;
-        if(min_k != 0.1) 
+        min_fl = floaty.min_key();
+        string fl_str = std::to_string(min_fl);
+        if(fl_str != "0.1") 
         {
-            cout << "Incorrect result of min_key. Expected \"0.1\" but got : " << min_k << endl;
+            cout << "Incorrect result of min_key. Expected \"0.1\" but got : " << fl_str << endl;
         }
 
         BST<string, string> punct;
@@ -1389,36 +1408,38 @@ void test_min_key()
         punct.insert("little a", "a");
         punct.insert("interrobang", "?!");
         punct.insert("tilde", "~");
-        str_min_k = punct.min_key() ;
-        if(str_min_k != "'") 
+        min_str = punct.min_key() ;
+        if(min_str != "'") 
         {
-            cout << "Incorrect result of min_key. Expected \"'\" but got : " << str_min_k << endl;
+            cout << "Incorrect result of min_key. Expected \"'\" but got : " << min_str << endl;
         }
         punct.remove("'");
-        str_min_k = punct.min_key() ;
-        if(str_min_k != "?") 
+        min_str = punct.min_key() ;
+        if(min_str != "?") 
         {
-            cout << "Incorrect result of min_key. Expected \"?\" but got : " << str_min_k << endl;
+            cout << "Incorrect result of min_key. Expected \"?\" but got : " << min_str << endl;
         }
 
         BST<float, float> one;
         one.insert(1.1, 13.4);
-        min_k = one.min_key() ;
-        if(min_k != 13.4) 
+        min_fl = one.min_key();
+        fl_str = std::to_string(min_fl);
+        if(fl_str != "13.4") 
         {
-            cout << "Incorrect result of min_key. Expected \"13.4\" but got : " << min_k << endl;
+            cout << "Incorrect result of min_key. Expected \"13.4\" but got : " << min_fl << endl;
         }
         one.remove(13.4);
-        min_k = one.min_key() ;
-        if(min_k != 0) 
+        min_fl = one.min_key();
+        fl_str = std::to_string(min_fl);
+        if(fl_str != "0") 
         {
-            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_k << endl;
+            cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_fl << endl;
         }
     } catch(exception& e) {
         cerr << "Error in determining key of min node in bst : " << e.what() << endl;
     }
 }
-
+/*
 void test_successor() 
 {
     try {
@@ -1527,31 +1548,31 @@ void test_binhex()
         string hex1 = convert<string,string>(bst1, bin1);
         delete bst1;
 
-//         if(hex1!=expected_hex1) {
-//             cout << "Incorrect result converting " << bin1 << " to hex. Expected : " << expected_hex1 << ", but got : " << hex1 << endl;
-//         }
+        if(hex1!=expected_hex1) {
+            cout << "Incorrect result converting " << bin1 << " to hex. Expected : " << expected_hex1 << ", but got : " << hex1 << endl;
+        }
        
-//     } catch(exception& e) {
-//         cerr << "Error converting binary to hex : " << e.what() << endl;
-//     }
+    } catch(exception& e) {
+        cerr << "Error converting binary to hex : " << e.what() << endl;
+    }
 
-//     try {
-//         BST<string,string>* bst2 = create_bst<string,string>("binhex.txt");
-//         string bin2 = "110101";
-//         string expected_hex2 = "35";
+    try {
+        BST<string,string>* bst2 = create_bst<string,string>("binhex.txt");
+        string bin2 = "110101";
+        string expected_hex2 = "35";
 
-//         string hex2 = convert<string,string>(bst2, bin2);
-//         delete bst2;
+        string hex2 = convert<string,string>(bst2, bin2);
+        delete bst2;
 
-//         if(hex2!=expected_hex2) {
-//             cout << "Incorrect result converting " << bin2 << " to hex. Expected : " << expected_hex2 << ", but got : " << hex2 << endl;
-//         }
+        if(hex2!=expected_hex2) {
+            cout << "Incorrect result converting " << bin2 << " to hex. Expected : " << expected_hex2 << ", but got : " << hex2 << endl;
+        }
        
-//     } catch(exception& e) {
-//         cerr << "Error converting binary to hex : " << e.what() << endl;
-//     }
-// }
-
+    } catch(exception& e) {
+        cerr << "Error converting binary to hex : " << e.what() << endl;
+    }
+}
+*/
 int main() {
     
     // test_empty();
@@ -1563,7 +1584,7 @@ int main() {
     // test_min_data();
     // test_min_key();
     // test_successor();
-    test_in_order();
+    //test_in_order();
     // test_trim();
     // test_binhex();
 

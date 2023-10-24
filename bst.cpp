@@ -92,7 +92,7 @@ void BST<T1, T2>::insert(const T1& d, const T2& k){
 template <typename T1, typename T2>
 T1 BST<T1, T2>::get(T2 k){
         if (root == NULL){
-            T1{};
+            return T1();
         }
     
     Node<T1, T2>* x = search(k);
@@ -115,12 +115,12 @@ void BST<T1, T2>::remove(T2 k){
     // case 1: x has1 or no child
     else if (x->left == NULL){ // when the only child is x.left
         transplant(x, x->right);
-        cout << x->right->key <<endl;
+        //cout << x->right->key <<endl;
         return;
     }
     else if (x->right == NULL){ // when the only child is x.right
         transplant(x, x->left);
-        cout << x->right->key <<endl;
+        //cout << x->right->key <<endl;
         return;
     }
     
@@ -182,7 +182,7 @@ Node<T1, T2>* BST<T1, T2>::search(T2 k){
                 x = x->left;
             }
         }
-        cout <<x->key<<endl;
+        //cout <<x->key<<endl;
         return x;
     }
 }
@@ -194,7 +194,7 @@ Node<T1, T2>* BST<T1, T2>::search(T2 k){
 template <typename T1, typename T2>
 T1 BST<T1, T2>::max_data(){
     if (root == NULL){
-        return T1{};
+         return T1();
     }
 
     T1 res = root->data;
@@ -227,7 +227,7 @@ T1 BST<T1, T2>::traverse_max_data(T1& data, Node<T1, T2>* x){
 template <typename T1, typename T2>
 T1 BST<T1, T2>::min_data(){
     if (root == NULL){
-        return T1{};
+         return T1();
     }
     T1 res = root->data;
     // cout <<root->data <<endl;
@@ -247,8 +247,8 @@ T1 BST<T1, T2>::traverse_min_data(T1& data, Node<T1, T2>* x){
     }
     else{
         T1 min_left = traverse_min_data(data, x->left);
-        cout << "x data " << x->data <<endl;
-        cout << "data returned " << min_left << endl;
+        //cout << "x data " << x->data <<endl;
+        //cout << "data returned " << min_left << endl;
         if (x->data < min_left){
             return traverse_min_data(x->data, x->right);
         }   
@@ -264,7 +264,7 @@ T1 BST<T1, T2>::traverse_min_data(T1& data, Node<T1, T2>* x){
 template <typename T1, typename T2>
 T2 BST<T1, T2>::max_key(){
     if (root == NULL){
-        return T2{};
+        return T2();
     }
     Node<T1, T2>* temp = root;
     while (temp->right != NULL){
@@ -276,7 +276,7 @@ T2 BST<T1, T2>::max_key(){
 template <typename T1, typename T2>
 T2 BST<T1, T2>::min_key(){
     if (root == NULL){
-        return T2{};
+        return T2();
     }
     Node<T1, T2>* temp = root;
     while (temp->left != NULL){
@@ -289,7 +289,7 @@ template <typename T1, typename T2>
 T2 BST<T1, T2>::successor(T2 k){
     Node<T1, T2>* x = search(k);
     if (x == NULL){
-        return T2{};
+         return T2();
     }
     if (x->right != NULL){
         x = x->right;
@@ -305,7 +305,7 @@ T2 BST<T1, T2>::successor(T2 k){
         y = y->p;
     }
     if (y==NULL){
-        return T2{};
+         return T2();
     }
     return y->key;
 
