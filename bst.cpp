@@ -335,31 +335,26 @@ void BST<T1, T2>::in_order_helper(ostream& s, Node<T1, T2>* x){
 
 
 template <typename T1, typename T2>
-string BST<T1, T2>::to_string(){
-    // Node<T1, T2>* temp = root;
+string BST<T1, T2>::to_string() {
     stringstream s;
-    queue<Node<T1,T2>*> q;
+    queue<Node<T1, T2>*> q;
     Node<T1, T2>* x = NULL;
-    int count(0);
 
     q.push(root);
-    while(!q.empty()){
+    while (!q.empty()) {
         x = q.front();
-        s << x->key << ' ';
-        if (x->left != NULL){
+        s << x->key << ' '; // Add a space after each key
+        if (x->left != NULL) {
             q.push(x->left);
         }
-        if (x->right != NULL){
+        if (x->right != NULL) {
             q.push(x->right);
         }
         q.pop();
-        count+=2;
     }
-        string res = s.str();
-        if (res[count-1]== ' '){
-            return res.substr(0,count-1);
-        }
-        return res.substr(0,count);
+
+    return s.str(); // return stringstream as a string
 }
+
 
 
