@@ -353,7 +353,12 @@ string BST<T1, T2>::to_string() {
         q.pop();
     }
 
-    return s.str(); // return stringstream as a string
+    string result = s.str();
+    if (!result.empty()) {
+        result.pop_back(); // remove the evil space
+    }
+
+    return result;
 }
 
 
