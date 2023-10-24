@@ -96,6 +96,9 @@ T1 BST<T1, T2>::get(T2 k){
         }
     
     Node<T1, T2>* x = search(k);
+    if (x ==NULL){
+        return T1();
+    }
     return x->data;
 }
 

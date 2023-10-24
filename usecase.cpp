@@ -62,6 +62,15 @@ string convert(BST<D, K>* bst, string bin)
 
 int main()
 {
-    //temp stuff
+    BST<string,string>* bst1 = create_bst<string,string>("binhex.txt");
+    string bin1 = "111010100101";
+    string expected_hex1 = "EA5";
+
+    //string hex1 = convert<string,string>(bst1, bin1);
+    //delete bst1;
+
+    // if(hex1!=expected_hex1) {
+    //     cout << "Incorrect result converting " << bin1 << " to hex. Expected : " << expected_hex1 << ", but got : " << hex1 << endl;
+    // }
     return 0;
 }

@@ -352,6 +352,7 @@ void test_get()
         }
 
         //
+
         
         bst_1.insert("one",1);
         val = bst_1.get(1);
@@ -396,18 +397,21 @@ void test_get()
         bubbly.insert(25.3, "root beer");
         fl = bubbly.get("kombucha");
         fl_str = std::to_string(fl);
+        fl_str = fl_str.substr(0,4);
         if(fl_str != "10.4")
         {
             cout << "Incorrect get result. Expected \"10.4\" but got : " << fl << endl;
         }
         fl = bubbly.get("sprite");
         fl_str = std::to_string(fl);
+        fl_str = fl_str.substr(0,4);
         if(fl_str != "12.5")
         {
             cout << "Incorrect get result. Expected \"12.5\" but got : " << fl << endl;
         }
         fl = bubbly.get("mountain dew");
         fl_str = std::to_string(fl);
+        fl_str = fl_str.substr(0,1);
         if(fl_str != "0") //no mtn dew in bst
         {
             cout << "Incorrect get result. Expected \"0\" because key is not in BST but got : " << fl << endl;
@@ -434,12 +438,14 @@ void test_get()
         deci.insert(90.1, 90);
         fl = deci.get(10);
         fl_str = std::to_string(fl);
+        fl_str = fl_str.substr(0,4);
         if(fl_str != "10.9") 
         {
             cout << "Incorrect get result. Expected \"10.9\" but got : " << fl << endl;
         }
         fl = deci.get(19);
         fl_str = std::to_string(fl);
+        fl_str = fl_str.substr(0,1);
         if(fl_str != "0") //no 19 in bst
         {
             cout << "Incorrect get result. Expected \"0\" because key is not in BST but got : " << fl << endl;
@@ -452,7 +458,7 @@ void test_get()
         num = ints.get(32);
         if(num != 16)
         {
-            cout << "Incorrect get result. Expected \"q6\" because key is not in BST but got : " << num << endl;
+            cout << "Incorrect get result. Expected \"16\" but got : " << num << endl;
         }
         num = ints.get(50);
         if(num != 0) //no 50 key in bst
@@ -488,21 +494,22 @@ void test_get()
         num = point.get(10.1);
         if(num != 0) //no 10.1 in bst
         {
-            cout << "Incorrect get result. Expected \"0\" because key is not in BST but got : " << fl << endl;
+            cout << "Incorrect get result. Expected \"0\" because key is not in BST but got : " << num << endl;
         }
-
         BST<float, float> too_floaty;
         too_floaty.insert(100.1, 40.8);
         too_floaty.insert(80.5, 1390.0);
         too_floaty.insert(78.3, 1.1);
         fl = too_floaty.get(1.1);
         fl_str = std::to_string(fl);
+        fl_str = fl_str.substr(0,4);
         if(fl_str != "78.3")
         {
-            cout << "Incorrect get result. Expected \"1.1\" because key is not in BST but got : " << fl << endl;
+            cout << "Incorrect get result. Expected \"78.3\" because key is not in BST but got : " << fl << endl;
         }
         fl = too_floaty.get(16.6);
         fl_str = std::to_string(fl);
+        fl_str = fl_str.substr(0,1);
         if(fl_str != "0") //no 16.6 in bst
         {
             cout << "Incorrect get result. Expected \"0.0\" because key is not in BST but got : " << fl << endl;
@@ -751,13 +758,13 @@ void test_max_data()
         }
         BST<string, float> str_fl;
         max_str = str_fl.max_data();
-        if(max_str != "0") {
-            cout << "Incorrect result finding max_data of empty BST. Expected 0 but got : " << max_str << endl;
+        if(max_str != "") {
+            cout << "Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
         }
         BST<string, int> str_int;
         max_str = str_int.max_data();
-        if(max_str != "0") {
-            cout << "Incorrect result finding max_data of empty BST. Expected 0 but got : " << max_str << endl;
+        if(max_str != "") {
+            cout << "Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
         }
         BST<float, string> fl_str;
         max_str = fl_str.max_data();
@@ -766,13 +773,13 @@ void test_max_data()
         }
         BST<float, float> fl_fl;
         max_str = fl_fl.max_data();
-        if(max_str != "0") {
-            cout << "Incorrect result finding max_data of empty BST. Expected 0 but got : " << max_str << endl;
+        if(max_str != "") {
+            cout << "Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
         }
         BST<float, int> fl_int;
         max_str = fl_int.max_data();
-        if(max_str != "0") {
-            cout << "Incorrect result finding max_data of empty BST. Expected 0 but got : " << max_str << endl;
+        if(max_str != "") {
+            cout << "Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
         }
         BST<int, string> int_str;
         max_str = int_str.max_data();
@@ -781,16 +788,16 @@ void test_max_data()
         }
         BST<int, float> int_float;
         max_str = int_float.max_data();
-        if(max_str != "0") {
-            cout << "Incorrect result finding max_data of empty BST. Expected 0 but got : " << max_str << endl;
+        if(max_str != "") {
+            cout << "Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
         }
         BST<int, int> int_int;
         max_str = int_int.max_data();
-        if(max_str != "0") {
-            cout << "Incorrect result finding max_data of empty BST. Expected 0 but got : " << max_str << endl;
+        if(max_str != "") {
+            cout << "Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
         }
 
-        //
+        // change empties
 
         int vals[10] = {5, 2, 7, 1, 3, 4, 6, 9, 8, 10};
         BST<string, int> balanced_bst;
@@ -798,6 +805,7 @@ void test_max_data()
             balanced_bst.insert(to_string(vals[i]) + " data", vals[i]);
         }
         max_str = balanced_bst.max_data();
+        cout << "max string: " << max_str << endl;
         if(max_str != "10 data") {
             cout << "Incorrect result of max_data. Expected \"10 data\" but got : " << max_str << endl;
         }
@@ -897,9 +905,9 @@ void test_max_data()
         }
         one.remove(13.4);
         max_str = one.max_data();
-        if(max_str != "0") 
+        if(max_str != "") 
         {
-            cout << "Incorrect result of max_data of empty BST. Expected 0 but got : " << max_str << endl;
+            cout << "Incorrect result of max_data of empty BST. Expected nothing but got : " << max_str << endl;
         }
 
 
@@ -1049,8 +1057,7 @@ void test_max_key()
         floaty.insert(50000, 0.3);
         floaty.insert(0, 15.5);
         max_fl = floaty.max_key();
-        fl_str = std::to_string(max_fl);
-        if(fl_str != "15.5") 
+        if(max_fl != 15.5) 
         {
             cout << "Incorrect result of max_key. Expected \"15.5\" but got : " << max_fl << endl;
         }
@@ -1078,14 +1085,14 @@ void test_max_key()
         one.insert(1.1, 13.4);
         max_fl = one.max_key();
         fl_str = std::to_string(max_fl);
+        fl_str = fl_str.substr(0,4);
         if(fl_str != "13.4") 
         {
             cout << "Incorrect result of max_key. Expected \"13.4\" but got : " << max_fl << endl;
         }
         one.remove(13.4);
         max_fl = one.max_key();
-        fl_str = std::to_string(max_fl);
-        if(fl_str != "0") 
+        if(max_fl != 0) 
         {
             cout << "Incorrect result of max_key of empty BST. Expected 0 but got : " << max_fl << endl;
         }
@@ -1354,7 +1361,6 @@ void test_min_key()
             cout << "Incorrect result of min_key. Expected 0 but got : " << min_int << endl;
         }
 
-        string str_min_k;
         BST<string, string> pride;
         pride.insert("bisexual", "purple");
         pride.insert("gay", "green");
@@ -1380,7 +1386,7 @@ void test_min_key()
         min_str = alph.min_key() ;
         if(min_str != "A") 
         {
-            cout << "Incorrect result of min_key. Expected \"A\" but got : " << str_min_k << endl;
+            cout << "Incorrect result of min_key. Expected \"A\" but got : " << min_str << endl;
         }
         alph.remove("A");
         min_str = alph.min_key() ;
@@ -1396,6 +1402,7 @@ void test_min_key()
         floaty.insert(0, 15.5);
         min_fl = floaty.min_key();
         string fl_str = std::to_string(min_fl);
+        fl_str = fl_str.substr(0,3);
         if(fl_str != "0.1") 
         {
             cout << "Incorrect result of min_key. Expected \"0.1\" but got : " << fl_str << endl;
@@ -1424,6 +1431,7 @@ void test_min_key()
         one.insert(1.1, 13.4);
         min_fl = one.min_key();
         fl_str = std::to_string(min_fl);
+        fl_str = fl_str.substr(0,4);
         if(fl_str != "13.4") 
         {
             cout << "Incorrect result of min_key. Expected \"13.4\" but got : " << min_fl << endl;
@@ -1431,6 +1439,7 @@ void test_min_key()
         one.remove(13.4);
         min_fl = one.min_key();
         fl_str = std::to_string(min_fl);
+        fl_str = fl_str.substr(0,1);
         if(fl_str != "0") 
         {
             cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_fl << endl;
@@ -1439,7 +1448,7 @@ void test_min_key()
         cerr << "Error in determining key of min node in bst : " << e.what() << endl;
     }
 }
-/*
+
 void test_successor() 
 {
     try {
@@ -1447,21 +1456,64 @@ void test_successor()
         string succ_str;
         float succ_fl;
 
+        //empties
         BST<string, string> ss;
         succ_str = ss.successor("hi");
         if(succ_str != "") 
         {
-            cout << "Incorrect result of successor of empty string. Expected nothing but got : " << succ_str << endl;
+            cout << "Incorrect result of successor of empty string. Expected empty string but got : " << succ_str << endl;
         }
         BST<string, int> si;
+        succ_int = si.successor(31);
+        if(succ_int != 0) 
+        {
+            cout << "Incorrect result of successor of empty string. Expected 0 but got : " << succ_int << endl;
+        }
         BST<string, float> sf;
+        succ_fl = sf.successor(354.1);
+        if(succ_fl != 0) 
+        {
+            cout << "Incorrect result of successor of empty string. Expected 0 but got : " << succ_fl << endl;
+        }
         BST<int, string> is;
+        succ_str = is.successor("boo");
+        if(succ_str != "") 
+        {
+            cout << "Incorrect result of successor of empty BST. Expected empty string but got : " << succ_str << endl;
+        }
         BST<int, int> ii;
+        succ_int = ii.successor(2352);
+        if(succ_int != 0) 
+        {
+            cout << "Incorrect result of successor of empty BST. Expected 0 but got : " << succ_int << endl;
+        }
         BST<int, float> i_f;
+        succ_fl = i_f.successor(31);
+        if(succ_fl != 0) 
+        {
+            cout << "Incorrect result of successor of empty BST. Expected 0 but got : " << succ_fl << endl;
+        }
         BST<float, string> fs;
+        succ_str = fs.successor("blaaaaf");
+        if(succ_str != "") 
+        {
+            cout << "Incorrect result of successor of empty BST. Expected empty string but got : " << succ_str << endl;
+        }
         BST<float, int> fi;
+        succ_int = fi.successor(31);
+        if(succ_int != 0) 
+        {
+            cout << "Incorrect result of successor of empty BST. Expected 0 but got : " << succ_int << endl;
+        }
         BST<float, float> ff;
+        succ_fl = ff.successor(31);
+        if(succ_fl != 0) 
+        {
+            cout << "Incorrect result of successor of empty string. Expected 0 but got : " << succ_fl << endl;
+        }
 
+
+        //
 
         int vals[10] = {5, 2, 7, 1, 3, 4, 6, 9, 8, 10};
         BST<string, int> balanced_bst;
@@ -1480,11 +1532,134 @@ void test_successor()
         if(succ_int != 0) {
             cout << "Incorrect result of successor of 10. Expected 0 but got : " << succ_int << endl;
         }
+        succ_int = balanced_bst.successor(11); //11 is not in BST
+        if(succ_int != 0) {
+            cout << "Incorrect result of successor of 11, which doesn't exist in BST. Expected 0 but got : " << succ_int << endl;
+        }
+
+        int vals2[10] = {1,2,3,4,5,6,7,8,9,10};
+        BST<string, int> unbal;
+        for(int i = 0; i < 10; i++) {
+            unbal.insert(to_string(vals2[i]) + " data", vals2[i]);
+        }
+        succ_int = unbal.successor(4);
+        if(succ_int != 5) {
+            cout << "Incorrect result of successor of 4. Expected 5 but got : " << succ_int << endl;
+        }
+        succ_int = unbal.successor(7);
+        if(succ_int != 8) {
+            cout << "Incorrect result of successor of 7. Expected 8 but got : " << succ_int << endl;
+        }
+        succ_int = unbal.successor(10);
+        if(succ_int != 0) {
+            cout << "Incorrect result of successor of 10. Expected 0 but got : " << succ_int << endl;
+        }
+        succ_int = unbal.successor(-1); //-1 is not in BST
+        if(succ_int != 0) {
+            cout << "Incorrect result of successor of -1, which doesn't exist in BST. Expected 0 but got : " << succ_int << endl;
+        }
+
+        int negvals[6] = {-140, -35, -1395, -1, -5, -34};
+        BST<string, int> negs;
+        for(int i = 0; i < 6; i++) {
+            negs.insert(to_string(negvals[i]) + " data", negvals[i]);
+        }
+        succ_int = negs.successor(4); //4 is not in BST
+        if(succ_int != 0) {
+            cout << "Incorrect result of successor of 4, which doesn't exist in BST. Expected 0 but got : " << succ_int << endl;
+        }
+        succ_int = negs.successor(-6); //-6 is not in BST
+        if(succ_int != 0) {
+            cout << "Incorrect result of successor of -6, which doesn't exist in BST. Expected 0 but got : " << succ_int << endl;
+        }
+        succ_int = negs.successor(-1395);
+        if(succ_int != -140) {
+            cout << "Incorrect result of successor of -1395. Expected -140 but got : " << succ_int << endl;
+        }
+        succ_int = negs.successor(-5);
+        if(succ_int != -1) {
+            cout << "Incorrect result of successor of -5. Expected -1 but got : " << succ_int << endl;
+        }
+
+        BST<string, int> neg_unb;
+        int negvals2[6] = {0,-1,-2,-3,-4,-5};
+        for(int i = 0; i < 6; i++) {
+            neg_unb.insert(to_string(negvals2[i]) + " data", negvals2[i]);
+        }
+        succ_int = neg_unb.successor(4); //4 is not in BST
+        if(succ_int != 0) {
+            cout << "Incorrect result of successor of 4, which doesn't exist in BST. Expected 0 but got : " << succ_int << endl;
+        }
+        succ_int = neg_unb.successor(-6); //-6 is not in BST
+        if(succ_int != 0) {
+            cout << "Incorrect result of successor of -6, which doesn't exist in BST. Expected 0 but got : " << succ_int << endl;
+        }
+        succ_int = neg_unb.successor(0);
+        if(succ_int != 0) {
+            cout << "Incorrect result of successor of 0. Expected 0 but got : " << succ_int << endl;
+        }
+        succ_int = neg_unb.successor(-2);
+        if(succ_int != -1) {
+            cout << "Incorrect result of successor of -2. Expected -1 but got : " << succ_int << endl;
+        }
+
+        BST<string, string> punct;
+        punct.insert("question mark", "?");
+        punct.insert("big A", "A");
+        punct.insert("quote", "'");
+        punct.insert("little a", "a");
+        punct.insert("exclamation", "!");
+        punct.insert("tilde", "~");
+        succ_str = punct.successor("/"); //not in BST
+        if(succ_str != "") 
+        {
+            cout << "Incorrect result of successor of /, which doesn't exist in BST. Expected empty string but got : " << succ_str << endl;
+        }
+        succ_str = punct.successor("?");
+        if(succ_str != "A") 
+        {
+            cout << "Incorrect result of successor of ?. Expected \"A\" but got : " << succ_str << endl;
+        }
+        succ_str = punct.successor("~");
+        if(succ_str != "") 
+        {
+            cout << "Incorrect result of successor of \"~\". Expected empty string but got : " << succ_str << endl;
+        }
+        punct.remove("A");
+        succ_str = punct.successor("?");
+        if(succ_str != "a") 
+        {
+            cout << "Incorrect result of successor of ?. Expected \"a\" but got : " << succ_str << endl;
+        }
+
+        BST<int, string> holidays;
+        holidays.insert(13, "juneteenth");
+        holidays.insert(53, "ramadan");
+        holidays.insert(1003, "christmas");
+        holidays.insert(264, "halloween");
+        holidays.insert(136, "holi");
+        succ_str = holidays.successor("ramadan");
+        if(succ_str != "") 
+        {
+            cout << "Incorrect result of successor of ramadan. Expected empty string but got : " << succ_str << endl;
+        }
+        succ_str = holidays.successor("halloween");
+        if(succ_str != "holi") 
+        {
+            cout << "Incorrect result of successor of halloween. Expected holi but got : " << succ_str << endl;
+        }
+        succ_str = holidays.successor("easter"); //not in BST
+        if(succ_str != "") 
+        {
+            cout << "Incorrect result of successor of easter, which doesn't exist in BST. Expected empty string but got : " << succ_str << endl;
+        }
+
+
     } catch(exception& e) {
         cerr << "Error in determining successor in bst : " << e.what() << endl;
     }
 }
-
+/*
 void test_in_order() 
 {
     try {
@@ -1575,15 +1750,15 @@ void test_binhex()
 */
 int main() {
     
-    // test_empty();
-    // test_insert();
-    // test_get();
-    // test_remove();
-    // test_max_data();
-    // test_max_key();
-    // test_min_data();
-    // test_min_key();
-    // test_successor();
+    test_empty();
+    test_insert();
+    test_get();
+    //test_remove(); //flt
+    //test_max_data(); //errors
+    test_max_key(); 
+    //test_min_data(); //errors
+    test_min_key();
+    test_successor();
     //test_in_order();
     // test_trim();
     // test_binhex();
