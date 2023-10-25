@@ -73,6 +73,7 @@ void BST<T1, T2>::remove(T2 k){
     Node<T1, T2>* x = search(k); // if the bst is empty, error thrown here
     // put in if x is null
     if (x == NULL){
+        cout << "to here " <<endl;
         return;
     }
     else if (x->p == NULL){ // when x is the root of the tree
@@ -94,7 +95,7 @@ void BST<T1, T2>::remove(T2 k){
     
     // case 2: x has 2 child
     // find x successor
-    else{
+    else if (x->left != NULL && x->right != NULL){
         Node<T1, T2>* y = x->right;
         while (y->left != NULL){
             y = y->left; //find the left most node on the right subtree of x
@@ -306,10 +307,10 @@ template <typename T1, typename T2>
 string BST<T1, T2>::to_string() {
     stringstream s;
     queue<Node<T1, T2>*> q;
-    Node<T1, T2>* x = NULL;
+    Node<T1, T2>* x = root;
 
-    q.push(root);
-    while (!q.empty()) {
+    q.push(x);
+    while (!q.empty() && x!=NULL) {
         x = q.front();
         s << x->key << ' '; // Add a space after each key
         if (x->left != NULL) {

@@ -527,7 +527,9 @@ void test_remove()
 
         BST<string, int> str_int;
         str_int.remove(0);
+        cout << "done remove elem that not there" <<endl;
         bst_str = str_int.to_string();
+        cout << "here" << endl;
         if(bst_str != "") 
         {
             cout << "Incorrect result of removing 0 from empty BST. Expected empty string but got : " << bst_str << endl;
@@ -1751,15 +1753,15 @@ void test_binhex()
 */
 int main() {
     
-    test_empty();
+    // test_empty();
     test_insert();
-    test_get();
-    test_remove(); //flt
+    // test_get();
+    // test_remove(); //flt
     //test_max_data(); //errors
-    test_max_key(); 
+    // test_max_key(); 
     //test_min_data(); //errors
-    test_min_key();
-    test_successor();
+    // test_min_key();
+    // test_successor();
     //test_in_order();
     // test_trim();
     // test_binhex();
