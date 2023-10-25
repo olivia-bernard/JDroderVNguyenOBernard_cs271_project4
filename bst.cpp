@@ -21,8 +21,6 @@ bool BST<T1, T2>::empty(){
     return false;
 }
 
-
-
 template <typename T1, typename T2>
 void BST<T1, T2>::insert(const T1& d, const T2& k){
     Node<T1, T2>* node = new Node<T1, T2>(d, k);

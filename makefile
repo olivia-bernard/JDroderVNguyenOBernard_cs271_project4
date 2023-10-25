@@ -8,10 +8,11 @@ all: test
 test: test_bst.cpp 
 	g++ test_bst.cpp -o test
 
-#usecase: usecase.cpp g++ usecase.cpp -o usecase
+usecase: main.cpp 
+	g++ main.cpp -o usecase
 
 clean:
-	rm test 
+	rm test usecase
 
 # test: bst.cpp #change to test_bst later
 #	g++ bst.cpp -o test
