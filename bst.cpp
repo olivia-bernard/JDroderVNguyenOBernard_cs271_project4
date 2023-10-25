@@ -13,6 +13,9 @@ using namespace std;
 // BST class
 //=================================================
 
+// empty - function to check if BST is empty
+// preconditions: none
+// postconditions: returns true if tree is empty, otherwise false
 template <typename T1, typename T2>
 bool BST<T1, T2>::empty(){
     if (root == NULL){
@@ -21,6 +24,9 @@ bool BST<T1, T2>::empty(){
     return false;
 }
 
+// insert - function to insert a new node into a BST
+// preconditions: d and k are valid values
+// postconditions: insert a new node with data 'd' and key 'k' into the tree
 template <typename T1, typename T2>
 void BST<T1, T2>::insert(const T1& d, const T2& k){
     Node<T1, T2>* node = new Node<T1, T2>(d, k);
@@ -52,6 +58,10 @@ void BST<T1, T2>::insert(const T1& d, const T2& k){
     return;
 }
 
+// get - function to get data associated with a given key
+// preconditions: k is valid
+// postconditions: if tree is empty or key doesn't exist, return default value of type T1,
+// otherwise, returns data associated with given key
 template <typename T1, typename T2>
 T1 BST<T1, T2>::get(T2 k){
         if (root == NULL){
@@ -66,6 +76,10 @@ T1 BST<T1, T2>::get(T2 k){
 }
 
 
+// remove - function to remove a node with a given key from BST
+// preconditions: k is valid
+// postconditions: if tree is empty, or key doesn't exist, nothing is done,
+// otherwise, node w/ the given key is removed from the tree
 template <typename T1, typename T2>
 void BST<T1, T2>::remove(T2 k){
     Node<T1, T2>* x = search(k); // if the bst is empty, error thrown here
@@ -111,6 +125,9 @@ void BST<T1, T2>::remove(T2 k){
 
 }
 
+// transplant - function to replace subtree rooted at 'u' w/ subtree rooted at 'v'
+// preconditions: none
+// postconditions: replaces subtree rooted at 'u' w/ subtree rooted at 'v' in the tree
 template <typename T1, typename T2>
 void BST<T1, T2>::transplant(Node<T1, T2>* u, Node<T1, T2>* v){ // replace subtree rooted at u with subtree rooted at v
     if (u->p == NULL){
@@ -133,6 +150,10 @@ void BST<T1, T2>::transplant(Node<T1, T2>* u, Node<T1, T2>* v){ // replace subtr
 }
 
 
+// search - function to search for a node w/ a given key in the BST
+// preconditions: none
+// postconditions: if tree is empty, return NIL
+// if key exists, returns node w/ given key, otherwise return NIL
 template <typename T1, typename T2>
 Node<T1, T2>* BST<T1, T2>::search(T2 k){
     // try{
@@ -158,6 +179,11 @@ Node<T1, T2>* BST<T1, T2>::search(T2 k){
 // //=================================================
 // // Min/max data
 // // =================================================
+
+// max_data - function to find the max data in the BST
+// preconditions: none
+// postconditions: if the tree is empty, return default value of T1
+// otherwise, return max data in the tree
 template <typename T1, typename T2>
 T1 BST<T1, T2>::max_data(){
     if (root == NULL){
@@ -173,6 +199,10 @@ T1 BST<T1, T2>::max_data(){
     return res;
 }
 
+
+// traverse_max_data -- helper function to recursively find the max data in a subtree rooted at 'x'
+// preconditions: data is valid
+// postcondition: recursively returns the max data node, or NIL otherwise
 template <typename T1, typename T2>
 T1 BST<T1, T2>::traverse_max_data(T1& data, Node<T1, T2>* x){
     if (x == NULL){
@@ -191,6 +221,10 @@ T1 BST<T1, T2>::traverse_max_data(T1& data, Node<T1, T2>* x){
         }
 }
 
+// min_data - function to find the minimum data in the BST
+// preconditions: none
+// postconditions: if tree is empty, returns default value of T1, 
+// otherwise, returns minimum data in the tree
 template <typename T1, typename T2>
 T1 BST<T1, T2>::min_data(){
     if (root == NULL){
@@ -205,6 +239,9 @@ T1 BST<T1, T2>::min_data(){
     return res;
 }
 
+// traverse_min_data - helper function to recursively find the min data in a subtree rooted at 'x'
+// preconditions: data is valid
+// postconditions: recursively returns the min data node, or NIL otherwise.
 template <typename T1, typename T2>
 T1 BST<T1, T2>::traverse_min_data(T1& data, Node<T1, T2>* x){
     if (x == NULL){
@@ -228,6 +265,11 @@ T1 BST<T1, T2>::traverse_min_data(T1& data, Node<T1, T2>* x){
 // //=================================================
 // // Min/max key
 // // =================================================
+
+// max_key - function to find the max key in the BST
+// preconditions: none
+// postconditions: if tree is empty, return a default value of T2,
+// otherwise, return the max key in the tree
 template <typename T1, typename T2>
 T2 BST<T1, T2>::max_key(){
     if (root == NULL){
@@ -240,6 +282,10 @@ T2 BST<T1, T2>::max_key(){
     return temp->key;
 }
 
+// min_key - function to find the minimum key in the BST
+// preconditions: none
+// postconditions: if tree is empty, return default value of T2,
+// otherwise, return min key in the tree
 template <typename T1, typename T2>
 T2 BST<T1, T2>::min_key(){
     if (root == NULL){
@@ -252,6 +298,10 @@ T2 BST<T1, T2>::min_key(){
     return temp->key;
 }
 
+// successor - function to find the successor of a given key in a BST
+// preconditions: none
+// postconditions: if the tree is empty or the key doesn't exist, return a default value of T2,
+// otherwise, return the key of the successor of the given key
 template <typename T1, typename T2>
 T2 BST<T1, T2>::successor(T2 k){
     Node<T1, T2>* x = search(k);
@@ -278,7 +328,9 @@ T2 BST<T1, T2>::successor(T2 k){
 
 }
 
-
+// in_order - function to perform an in-order traversal of the BST
+// preconditions: none
+// postconditions: return a space-separated string of keys in-order traversal.
 template <typename T1, typename T2>
 string BST<T1, T2>::in_order(){
     stringstream s;
@@ -289,6 +341,7 @@ string BST<T1, T2>::in_order(){
     return res;
 }
 
+// in_order_helper - helper function to perform an in-order traversal of a subtree rooted at 'x'
 template <typename T1, typename T2>
 //pass in a bst rooted at x
 void BST<T1, T2>::in_order_helper(ostream& s, Node<T1, T2>* x){
@@ -300,7 +353,9 @@ void BST<T1, T2>::in_order_helper(ostream& s, Node<T1, T2>* x){
     in_order_helper(s, x->right);
 }
 
-
+// to_string - function to convert the BST to a string
+// preconditions: none
+// postconditions: return a space-separated string representation of the keys in level-order traversal
 template <typename T1, typename T2>
 string BST<T1, T2>::to_string() {
     stringstream s;
