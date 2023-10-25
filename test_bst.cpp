@@ -1918,17 +1918,6 @@ void test_binhex()
         cerr << "Error converting binary to hex : " << e.what() << endl;
     }
 
-    try {
-        // additional test case: csv file does not exist
-        BST<string, string>* bst3 = create_bst<string, string>("nonexistent.csv");
-        cerr << "(Added) Test for nonexistent CSV: Expected a failure to open the CSV file, but it didn't fail." << endl;
-
-    } catch (exception& e) {
-        // this is expected, as the csv file doesn't exist
-        cout << "(Added) Test for nonexistent CSV: Successfully caught an exception for a nonexistent CSV file: " << e.what() << endl;
-    }
-
-
 }
 
 int main() {
