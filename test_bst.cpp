@@ -527,14 +527,11 @@ void test_remove()
 
         BST<string, int> str_int;
         str_int.remove(0);
-        cout << "done remove elem that not there" <<endl;
         bst_str = str_int.to_string();
-        cout << "here" << endl;
         if(bst_str != "") 
         {
             cout << "Incorrect result of removing 0 from empty BST. Expected empty string but got : " << bst_str << endl;
         }
-        cout << "here" << endl;
         BST<string, float> str_fl;
         str_fl.remove(-10.5);
         bst_str = str_fl.to_string();
@@ -1676,21 +1673,76 @@ void test_successor()
         if(fl_str != "0.3") {
             cout << "Incorrect result of successor of 0.1. Expected 0.3 but got : " << fl_str << endl;
         }
+        succ_fl = floaty.successor(496.0);
+        if(succ_fl != 0) {
+            cout << "Incorrect result of successor of 496.0. Expected 0 but got : " << succ_str << endl;
+        }
 
 
     } catch(exception& e) {
         cerr << "Error in determining successor in bst : " << e.what() << endl;
     }
 }
-/*
+
 void test_in_order() 
 {
     try {
+        string bst_str;
+        int bst_int;
+        float bst_fl;
+
+        BST<string, string> ss;
+        bst_str = ss.in_order();
+        if(bst_str != "") {
+            cout << "Incorrect in_order result in attempting to order empty BST. Expected empty string but got : " << bst_str << endl;
+        }
+        BST<string, int> si;
+        bst_str = si.in_order();
+        if(bst_str != "") {
+            cout << "Incorrect in_order result in attempting to order empty BST. Expected empty string but got : " << bst_str << endl;
+        }
+        BST<string, float> sf;
+        bst_str = sf.in_order();
+        if(bst_str != "") {
+            cout << "Incorrect in_order result in attempting to order empty BST. Expected empty string but got : " << bst_str << endl;
+        }
+        BST<int, string> is;
+        bst_str = is.in_order();
+        if(bst_str != "") {
+            cout << "Incorrect in_order result in attempting to order empty BST. Expected empty string but got : " << bst_str << endl;
+        }
+        BST<int, int> ii;
+        bst_str = ii.in_order();
+        if(bst_str != "") {
+            cout << "Incorrect in_order result in attempting to order empty BST. Expected empty string but got : " << bst_str << endl;
+        }
+        BST<int, float> i_f;
+        bst_str = i_f.in_order();
+        if(bst_str != "") {
+            cout << "Incorrect in_order result in attempting to order empty BST. Expected empty string but got : " << bst_str << endl;
+        }
+        BST<float, string> fs;
+        bst_str = fs.in_order();
+        if(bst_str != "") {
+            cout << "Incorrect in_order result in attempting to order empty BST. Expected empty string but got : " << bst_str << endl;
+        }
+        BST<float, int> fi;
+        bst_str = fi.in_order();
+        if(bst_str != "") {
+            cout << "Incorrect in_order result in attempting to order empty BST. Expected empty string but got : " << bst_str << endl;
+        }
+        BST<float, float> ff;
+        bst_str = ff.in_order();
+        if(bst_str != "") {
+            cout << "Incorrect in_order result in attempting to order empty BST. Expected empty string but got : " << bst_str << endl;
+        }
+
+
         BST<string, int> bst;
         for(int i = 1; i <= 10; i++) {
             bst.insert("some data", i);
         }
-        string bst_str = bst.in_order();
+        bst_str = bst.in_order();
         if(bst_str != "1 2 3 4 5 6 7 8 9 10") {
             cout << "Incorrect in_order result after inserting keys 1-10 in order. Expected 1 2 3 4 5 6 7 8 9 10 but got : " << bst_str << endl;
         }
@@ -1703,11 +1755,108 @@ void test_in_order()
         if(bst_str != "1 2 3 4 5 6 7 8 9 10") {
             cout << "Incorrect in_order result after inserting keys {5, 2, 7, 1, 3, 4, 6, 9, 8, 10}. Expected 1 2 3 4 5 6 7 8 9 10 but got : " << bst_str << endl;
         }
+
+        string strs[10] = {"z", "f", "d", "t", "l", "e", "p", "b", "a", "q"};
+        BST<string, string> bal_strs;
+        for(int i = 0; i < 10; i++) {
+            bal_strs.insert("some data", strs[i]);
+        }
+        bst_str = bal_strs.in_order();
+        if(bst_str != "a b d e f l p q t z") {
+            cout << "Incorrect in_order result after inserting keys {z, f, d, t, l, e, p, b, a, q}. Expected a b d e f l p q t z but got : " << bst_str << endl;
+        }
+
+        BST<int, int> unbal_ints;
+        int unb[10] = {1,2,3,4,5,6,7,8,9,10};
+        for(int i = 0; i < 10; i++) {
+            unbal_ints.insert(12, unb[i]);
+        }
+        bst_str = unbal_ints.in_order();
+        if(bst_str != "1 2 3 4 5 6 7 8 9 10") {
+            cout << "Incorrect in_order result after inserting keys {1 2 3 4 5 6 7 8 9 10}. Expected 1 2 3 4 5 6 7 8 9 10 but got : " << bst_str << endl;
+        }
+
+        BST<int, int> backw;
+        int rev[10] = {10,9,8,7,6,5,4,3,2,1};
+        for(int i = 0; i < 10; i++) {
+            backw.insert(12, rev[i]);
+        }
+        bst_str = backw.in_order();
+        if(bst_str != "1 2 3 4 5 6 7 8 9 10") {
+            cout << "Incorrect in_order result after inserting keys {10 9 8 7 6 5 4 3 2 1}. Expected 1 2 3 4 5 6 7 8 9 10 but got : " << bst_str << endl;
+        }
+
+        BST<int, string> backw_str;
+        string rev_str[10] = {"z", "y", "w", "u", "t", "s", "r", "q", "b", "a"};
+        for(int i = 0; i < 10; i++) {
+            backw_str.insert(12, rev_str[i]);
+        }
+        bst_str = backw_str.in_order();
+        if(bst_str != "a b q r s t u w y z") {
+            cout << "Incorrect in_order result after inserting keys {z y w u t s r q b a}. Expected a b q r s t u w y z but got : " << bst_str << endl;
+        }
+
+        BST<string, string> one;
+        one.insert("hi", "there");
+        bst_str = one.in_order();
+        if(bst_str != "there") {
+            cout << "Incorrect in_order result after inserting keys {there}. Expected there but got : " << bst_str << endl;
+        }
+        BST<int, int> one1;
+        one1.insert(13, 542);
+        bst_str = one1.in_order();
+        if(bst_str != "542") {
+            cout << "Incorrect in_order result after inserting keys {542}. Expected 542 but got : " << bst_str << endl;
+        }
+        one1.insert(-3, -32);
+        bst_str = one1.in_order();
+        if(bst_str != "-32 542") {
+            cout << "Incorrect in_order result after inserting keys {542 -32}. Expected -32 542 but got : " << bst_str << endl;
+        }
+        one1.insert(90, 50);
+        bst_str = one1.in_order();
+        if(bst_str != "-32 50 542") {
+            cout << "Incorrect in_order result after inserting keys {542 -32 50}. Expected -32 50 542 but got : " << bst_str << endl;
+        }
+        BST<float, float> fl_one;
+        fl_one.insert(4.3, -42.4);
+        bst_str = one1.in_order();
+        if(bst_str != "-42.4") {
+            cout << "Incorrect in_order result after inserting keys {-42.4}. Expected -42.4 but got : " << bst_str << endl;
+        }
+
+        BST<string, string> punct;
+        punct.insert("question mark", "?");
+        punct.insert("big A", "A");
+        punct.insert("greater than", ">");
+        punct.insert("little a", "a");
+        punct.insert("exclamation", "!");
+        punct.insert("tilde", "~");
+        bst_str = punct.in_order();
+        if(bst_str != "! > ? A a ~") {
+            cout << "Incorrect in_order result after inserting keys {? A > a ! ~}. Expected ! > ? A a ~ but got : " << bst_str << endl;
+        }
+
+        BST<float, float> fls;
+        fls.insert(3.3, 10.4);
+        fls.insert(1.1, -0.5),
+        fls.insert(0, 0);
+        fls.insert(0.4, 0.4);
+        fls.insert(-15.0, -4.4);
+        fls.insert(23.5, 0.3);
+        fls.insert(32.4, 0.1);
+        bst_str = fls.in_order();
+        if(bst_str != "-4.4 -0.5 0 0.1 0.3 0.4 10.4") {
+            cout << "Incorrect in_order result after inserting keys {10.4 -0.5 0 0.4 -4.4 0.3 0.1}. Expected -4.4 -0.5 0 0.1 0.3 0.4 10.4 but got : " << bst_str << endl;
+        }
+
+
     } catch(exception& e) {
         cerr << "Error getting keys in_order from bst : " << e.what() << endl;
     }
 }
 
+/*
 void test_trim() 
 {
     try {
@@ -1796,7 +1945,7 @@ int main() {
     // test_successor();
     //test_in_order();
     // test_trim();
-    // test_binhex();
+    //test_binhex();
 
     cout << "Testing completed" << endl;
     
