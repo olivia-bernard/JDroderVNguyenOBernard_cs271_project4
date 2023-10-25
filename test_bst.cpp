@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <math.h>
-//#include "usecase.cpp"
+#include "usecase.cpp"
 #include "bst.cpp"
 using namespace std;
 
@@ -1668,10 +1668,13 @@ void test_successor()
             cout << "Incorrect result of successor of -5.9. Expected 0 but got : " << succ_fl << endl;
         }
         succ_fl = floaty.successor(0.1);
+        string fl_str;
+        fl_str = std::to_string(succ_fl);
+        fl_str = fl_str.substr(0,3);
+        if(fl_str != "0.3") {
+            cout << "Incorrect result of successor of 0.1. Expected 0.3 but got : " << fl_str << endl;
+        }
 
-        // if(succ_fl != 0.3) {
-        //     cout << "Incorrect result of successor of 0.1. Expected 0.3 but got : " << succ_fl << endl;
-        // }
 
     } catch(exception& e) {
         cerr << "Error in determining successor in bst : " << e.what() << endl;
@@ -1730,7 +1733,7 @@ void test_trim()
         cerr << "Error in trimming the bst : " << e.what() << endl;
     }
 }
-
+*/
 void test_binhex()
 {
     try {
@@ -1765,7 +1768,7 @@ void test_binhex()
         cerr << "Error converting binary to hex : " << e.what() << endl;
     }
 }
-*/
+
 int main() {
     
     test_empty();
