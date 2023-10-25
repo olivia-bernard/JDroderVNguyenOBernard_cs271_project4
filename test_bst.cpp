@@ -1820,7 +1820,7 @@ void test_in_order()
         }
         BST<float, float> fl_one;
         fl_one.insert(4.3, -42.4);
-        bst_str = one1.in_order();
+        bst_str = fl_one.in_order();
         if(bst_str != "-42.4") {
             cout << "Incorrect in_order result after inserting keys {-42.4}. Expected -42.4 but got : " << bst_str << endl;
         }
@@ -1856,6 +1856,7 @@ void test_in_order()
     }
 }
 
+/*
 void test_trim() 
 {
     try {
@@ -1884,6 +1885,7 @@ void test_trim()
     }
 }
 */
+
 void test_binhex()
 {
     try {
@@ -1920,6 +1922,7 @@ void test_binhex()
 
 }
 
+
 int main() {
     
     test_empty();
@@ -1931,9 +1934,9 @@ int main() {
     //test_min_data(); //errors
     test_min_key();
     test_successor();
-    //test_in_order();
-    // test_trim();
-    //test_binhex();
+    test_in_order();
+    //test_trim();
+    test_binhex();
 
     cout << "Testing completed" << endl;
     
