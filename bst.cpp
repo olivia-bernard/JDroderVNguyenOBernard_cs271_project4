@@ -19,9 +19,9 @@ using namespace std;
 template <typename T1, typename T2>
 bool BST<T1, T2>::empty(){
     if (root == NULL){
-        return true;
+        return true; // return true if root is NIL, meaning tree is empty
     }
-    return false;
+    return false; // return false if root is not NIL, meaning tree is non-empty
 }
 
 // insert - function to insert a new node into a BST
@@ -29,33 +29,33 @@ bool BST<T1, T2>::empty(){
 // postconditions: insert a new node with data 'd' and key 'k' into the tree
 template <typename T1, typename T2>
 void BST<T1, T2>::insert(const T1& d, const T2& k){
-    Node<T1, T2>* node = new Node<T1, T2>(d, k);
+    Node<T1, T2>* node = new Node<T1, T2>(d, k); // create a new node w/ data 'd' and key 'k'
 
     if (root == NULL){ //empty tree
-        root = node;
-        return;
+        root = node; // if tree is empty, set new node as the root
+        return; // exit
     }
 
     Node<T1, T2>* x = root; // node to compare with the new element
     Node<T1, T2>* y = NULL; // parent node
     
     while(x != NULL){
-        y = x;
-        if (x->key > node->key){
-            x = x->left;
+        y = x; // update 'y' to current node 'x'.
+        if (x->key > node->key){ 
+            x = x->left; // move to left child if new node's key is smaller
         }
         else {
-            x = x->right;
+            x = x->right; // move to right child if new node's key is larger
         }
     }
-    node->p = y;
+    node->p = y; // set parent of new node as 'y'
     if (y->key > node->key){
-        y->left = node;
+        y->left = node; // set new node as left child of 'y'
     }
     else{
-        y->right = node;
+        y->right = node; // set new node as right child of 'y'
     }
-    return;
+    return; // exit
 }
 
 // get - function to get data associated with a given key
@@ -65,14 +65,14 @@ void BST<T1, T2>::insert(const T1& d, const T2& k){
 template <typename T1, typename T2>
 T1 BST<T1, T2>::get(T2 k){
         if (root == NULL){
-            return T1();
+            return T1(); // if tree is empty, return default val of T1
         }
     
-    Node<T1, T2>* x = search(k);
+    Node<T1, T2>* x = search(k); // search for node w/ given key
     if (x ==NULL){
-        return T1();
+        return T1(); // if key doesn't exist, return default val of T1
     }
-    return x->data;
+    return x->data; // return data associated w/ given key
 }
 
 
@@ -82,27 +82,25 @@ T1 BST<T1, T2>::get(T2 k){
 // otherwise, node w/ the given key is removed from the tree
 template <typename T1, typename T2>
 void BST<T1, T2>::remove(T2 k){
-    Node<T1, T2>* x = search(k); // if the bst is empty, error thrown here
+    Node<T1, T2>* x = search(k); // if the bst is empty, an error is thrown here
     // put in if x is null
     if (x == NULL){
         cout << "to here " <<endl;
-        return;
+        return; // exit the function if node w/ given key doesn't exist
     }
     else if (x->p == NULL){ // when x is the root of the tree
-        root = NULL;
-        return;
+        root = NULL; // if node to be removed is the root, set root to NIL
+        return; // exit
     }
     
     // case 1: x has1 or no child
     else if (x->left == NULL){ // when the only child is x.left
-        transplant(x, x->right);
-        //cout << x->right->key <<endl;
-        return;
+        transplant(x, x->right); // replace x with its right child
+        return; // exit
     }
     else if (x->right == NULL){ // when the only child is x.right
-        transplant(x, x->left);
-        //cout << x->right->key <<endl;
-        return;
+        transplant(x, x->left); // replace x with its left child
+        return; // exit
     }
     
     // case 2: x has 2 child
@@ -113,15 +111,15 @@ void BST<T1, T2>::remove(T2 k){
             y = y->left; //find the left most node on the right subtree of x
         }
         if (y != x->right){
-            transplant(y, y->right);
+            transplant(y, y->right); // replace y with its right child
             y->right = x->right;
             y->right->p = y;
         }
-        transplant(x, y);
+        transplant(x, y); // replace x with y
         y->left = x->left;
         y->left->p = y;
     }
-    return;
+    return; // exit
 
 }
 
@@ -131,22 +129,22 @@ void BST<T1, T2>::remove(T2 k){
 template <typename T1, typename T2>
 void BST<T1, T2>::transplant(Node<T1, T2>* u, Node<T1, T2>* v){ // replace subtree rooted at u with subtree rooted at v
     if (u->p == NULL){
-        root = v;
-        return;
+        root = v; // if u is the root, set v as the new root
+        return; // exit
     }
-    if (u == u->p->right){
-        u->p->right = v;
+    if (u == u->p->right){ 
+        u->p->right = v; // set v as right child of u's parent
     }
 
     else if (u == u->p->left){
-        u->p->left = v;
+        u->p->left = v; // set v as left child of u's parent
     }
 
     if (v != NULL){
-        v->p = u->p;
+        v->p = u->p; // set u's parent as v's parent
     }
 
-    return;
+    return; // exit
 }
 
 
@@ -158,20 +156,20 @@ template <typename T1, typename T2>
 Node<T1, T2>* BST<T1, T2>::search(T2 k){
     // try{
     if (root == NULL){
-        return root;
+        return root; // if tree is empty, return NIL
     }
     else{
-        Node<T1, T2>* x = root;
+        Node<T1, T2>* x = root; // initialize a node 'x' as the root
         while (x != NULL && x->key != k){
             if(k > x->key){
-                x = x->right;
+                x = x->right; // move to the right child if k is greater than x's key
             }
             else{
-                x = x->left;
+                x = x->left; // move to the left child if k is smaller than x's key
             }
         }
         //cout <<x->key<<endl;
-        return x;
+        return x; // return node w/ given key or NIL if not found
     }
 }
 
@@ -187,16 +185,16 @@ Node<T1, T2>* BST<T1, T2>::search(T2 k){
 template <typename T1, typename T2>
 T1 BST<T1, T2>::max_data(){
     if (root == NULL){
-         return T1();
+         return T1(); // if tree is empty, return default value of T1
     }
 
-    T1 res = root->data;
+    T1 res = root->data; // initialize 'res' with root's data
     // cout <<root->data <<endl;
-    res = traverse_max_data(res, root);
+    res = traverse_max_data(res, root); // find max data in tree
     // if (res < max_tree){
     //     return max_tree;
     // }
-    return res;
+    return res; // return max data
 }
 
 
@@ -208,15 +206,15 @@ T1 BST<T1, T2>::traverse_max_data(T1& data, Node<T1, T2>* x){
     if (x == NULL){
         // cout << data << endl;
         // cout << "run 1 time"<<endl;
-        return data;
+        return data; // return data if node is NIL
     }
     else{
-        T1 max_left = traverse_max_data(data, x->left);
+        T1 max_left = traverse_max_data(data, x->left); // recursively find the max data in the left subtree.
         if (x->data > max_left){
-            return traverse_max_data(x->data, x->right);
+            return traverse_max_data(x->data, x->right); // recursively find the max data in the right subtree.
         }   
         else{
-            return traverse_max_data(max_left, x->right);
+            return traverse_max_data(max_left, x->right); // recursively find the max data in the right subtree
         }
         }
 }
@@ -228,15 +226,15 @@ T1 BST<T1, T2>::traverse_max_data(T1& data, Node<T1, T2>* x){
 template <typename T1, typename T2>
 T1 BST<T1, T2>::min_data(){
     if (root == NULL){
-         return T1();
+         return T1(); // if tree is empty, return default value of T1
     }
-    T1 res = root->data;
+    T1 res = root->data; // initialize 'res' with root's data
     // cout <<root->data <<endl;
-    res = traverse_min_data(res, root);
+    res = traverse_min_data(res, root); // find min data in the tree
     // if (res < max_tree){
     //     return max_tree;
     // }
-    return res;
+    return res; // return min data
 }
 
 // traverse_min_data - helper function to recursively find the min data in a subtree rooted at 'x'
@@ -247,17 +245,17 @@ T1 BST<T1, T2>::traverse_min_data(T1& data, Node<T1, T2>* x){
     if (x == NULL){
         // cout << data << endl;
         // cout << "run 1 time"<<endl;
-        return data;
+        return data; // return data if node is NIL
     }
     else{
-        T1 min_left = traverse_min_data(data, x->left);
+        T1 min_left = traverse_min_data(data, x->left); // recursively find the min data in the left subtree.
         //cout << "x data " << x->data <<endl;
         //cout << "data returned " << min_left << endl;
         if (x->data < min_left){
-            return traverse_min_data(x->data, x->right);
+            return traverse_min_data(x->data, x->right); // recursively find the min data in the right subtree.
         }   
         else{
-            return traverse_min_data(min_left, x->right);
+            return traverse_min_data(min_left, x->right); // recursively find the min data in the right subtree.
         }
         }
 }
@@ -273,13 +271,13 @@ T1 BST<T1, T2>::traverse_min_data(T1& data, Node<T1, T2>* x){
 template <typename T1, typename T2>
 T2 BST<T1, T2>::max_key(){
     if (root == NULL){
-        return T2();
+        return T2(); // if tree is empty, return default value of T2
     }
     Node<T1, T2>* temp = root;
     while (temp->right != NULL){
-        temp = temp->right;
+        temp = temp->right; // traverse to rightmost node to find max key
     }
-    return temp->key;
+    return temp->key; // return max key
 }
 
 // min_key - function to find the minimum key in the BST
@@ -289,13 +287,13 @@ T2 BST<T1, T2>::max_key(){
 template <typename T1, typename T2>
 T2 BST<T1, T2>::min_key(){
     if (root == NULL){
-        return T2();
+        return T2(); // if tree is empty, return default val of T2
     }
     Node<T1, T2>* temp = root;
     while (temp->left != NULL){
-        temp = temp->left;
+        temp = temp->left; // traverse to leftmost node to find min key
     }
-    return temp->key;
+    return temp->key; // return min key
 }
 
 // successor - function to find the successor of a given key in a BST
@@ -304,27 +302,27 @@ T2 BST<T1, T2>::min_key(){
 // otherwise, return the key of the successor of the given key
 template <typename T1, typename T2>
 T2 BST<T1, T2>::successor(T2 k){
-    Node<T1, T2>* x = search(k);
+    Node<T1, T2>* x = search(k); // search for node w/ given key
     if (x == NULL){
-         return T2();
+         return T2(); // if key doesn't exist, return default val of T2
     }
     if (x->right != NULL){
         x = x->right;
         while(x->left != NULL){
-            x = x->left;
+            x = x->left; // traverse to leftmost node in right subtree to find successor
         }
-        return x->key;
+        return x->key; // return key of successor
     }
 
     Node<T1, T2>* y = x->p;
     while (y != NULL && x == y->right){
         x = y;
-        y = y->p;
+        y = y->p; // move up the tree until a node w/ a greater key is found
     }
     if (y==NULL){
-         return T2();
+         return T2(); // if no successor found, return default val of T2
     }
-    return y->key;
+    return y->key; // return key of successor
 
 }
 
@@ -335,10 +333,10 @@ template <typename T1, typename T2>
 string BST<T1, T2>::in_order(){
     stringstream s;
     Node<T1, T2>* x = root;
-    in_order_helper(s, x);
+    in_order_helper(s, x); // perform an in-order traversal and add keys to stringstream
     string res = s.str();
-    res = res.substr(0, res.length()-1);
-    return res;
+    res = res.substr(0, res.length()-1); // remove trailing space
+    return res; // return the in-order traversal as a string
 }
 
 // in_order_helper - helper function to perform an in-order traversal of a subtree rooted at 'x'
@@ -346,11 +344,11 @@ template <typename T1, typename T2>
 //pass in a bst rooted at x
 void BST<T1, T2>::in_order_helper(ostream& s, Node<T1, T2>* x){
     if (x == NULL){
-        return;
+        return; // return if the node is NIL
     }
-    in_order_helper(s, x->left);
-    s << x->key << ' ';
-    in_order_helper(s, x->right);
+    in_order_helper(s, x->left); // recursively traverse the left subtree
+    s << x->key << ' '; // add key to stringstream
+    in_order_helper(s, x->right); // recursively traverse the right subtree
 }
 
 // to_string - function to convert the BST to a string
@@ -377,10 +375,10 @@ string BST<T1, T2>::to_string() {
 
     string result = s.str();
     if (!result.empty()) {
-        result.pop_back(); // remove the evil space
+        result.pop_back(); // remove the trailing space
     }
 
-    return result;
+    return result; // return the level-order traversal as a string
 }
 
 
