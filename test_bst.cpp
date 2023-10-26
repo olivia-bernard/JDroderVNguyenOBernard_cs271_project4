@@ -574,106 +574,106 @@ void test_remove()
     try {
         string bst_str;
 
-        // BST<string, int> str_int;
-        // str_int.remove(0);
-        // // cout << "done remove elem that not there" <<endl;
-        // bst_str = str_int.to_string();
-        // // cout << "here" << endl;
-        // if(bst_str != "") 
-        // {
-        //     cout << "Incorrect result of removing 0 from empty BST. Expected empty string but got : " << bst_str << endl;
-        // }
+        BST<string, int> str_int;
+        str_int.remove(0);
+        // cout << "done remove elem that not there" <<endl;
+        bst_str = str_int.to_string();
         // cout << "here" << endl;
-        // BST<string, float> str_fl;
-        // str_fl.remove(-10.5);
-        // bst_str = str_fl.to_string();
-        // if(bst_str != "") 
-        // {
-        //     cout << "Incorrect result of removing -10.5 from empty BST. Expected empty string but got : " << bst_str << endl;
-        // }
-        // BST<string, string> str_str;
-        // str_str.remove("hello");
-        // bst_str = str_str.to_string();
-        // if(bst_str != "") 
-        // {
-        //     cout << "Incorrect result of removing hello from empty BST. Expected empty string but got : " << bst_str << endl;
-        // }
-        // BST<int, int> int_int;
-        // int_int.remove(1);
-        // bst_str = int_int.to_string();
-        // if(bst_str != "") 
-        // {
-        //     cout << "Incorrect result of removing 1 from empty BST. Expected empty string but got : " << bst_str << endl;
-        // }
-        // BST<int, float> int_fl;
-        // int_fl.remove(1555.5);
-        // bst_str = int_fl.to_string();
-        // if(bst_str != "") 
-        // {
-        //     cout << "Incorrect result of removing 1555.5 from empty BST. Expected empty string but got : " << bst_str << endl;
-        // }
-        // BST<int, string> int_str;
-        // int_str.remove("hello");
-        // bst_str = int_str.to_string();
-        // if(bst_str != "") 
-        // {
-        //     cout << "Incorrect result of removing hello from empty BST. Expected empty string but got : " << bst_str << endl;
-        // }
-        // BST<float, int> fl_int;
-        // fl_int.remove(-89);
-        // bst_str = fl_int.to_string();
-        // if(bst_str != "") 
-        // {
-        //     cout << "Incorrect result of removing -89 from empty BST. Expected empty string but got : " << bst_str << endl;
-        // }
-        // BST<float, float> fl_fl;
-        // fl_fl.remove(9.0);
-        // bst_str = fl_fl.to_string();
-        // if(bst_str != "") 
-        // {
-        //     cout << "Incorrect result of removing 9.0 from empty BST. Expected empty string but got : " << bst_str << endl;
-        // }
-        // BST<float, string> fl_str;
-        // fl_str.remove("hello");
-        // bst_str = fl_str.to_string();
-        // if(bst_str != "") 
-        // {
-        //     cout << "Incorrect result of removing hello from empty BST. Expected empty string but got : " << bst_str << endl;
-        // }
+        if(bst_str != "") 
+        {
+            cout << "Incorrect result of removing 0 from empty BST. Expected empty string but got : " << bst_str << endl;
+        }
+        //cout << "here" << endl;
+        BST<string, float> str_fl;
+        str_fl.remove(-10.5);
+        bst_str = str_fl.to_string();
+        if(bst_str != "") 
+        {
+            cout << "Incorrect result of removing -10.5 from empty BST. Expected empty string but got : " << bst_str << endl;
+        }
+        BST<string, string> str_str;
+        str_str.remove("hello");
+        bst_str = str_str.to_string();
+        if(bst_str != "") 
+        {
+            cout << "Incorrect result of removing hello from empty BST. Expected empty string but got : " << bst_str << endl;
+        }
+        BST<int, int> int_int;
+        int_int.remove(1);
+        bst_str = int_int.to_string();
+        if(bst_str != "") 
+        {
+            cout << "Incorrect result of removing 1 from empty BST. Expected empty string but got : " << bst_str << endl;
+        }
+        BST<int, float> int_fl;
+        int_fl.remove(1555.5);
+        bst_str = int_fl.to_string();
+        if(bst_str != "") 
+        {
+            cout << "Incorrect result of removing 1555.5 from empty BST. Expected empty string but got : " << bst_str << endl;
+        }
+        BST<int, string> int_str;
+        int_str.remove("hello");
+        bst_str = int_str.to_string();
+        if(bst_str != "") 
+        {
+            cout << "Incorrect result of removing hello from empty BST. Expected empty string but got : " << bst_str << endl;
+        }
+        BST<float, int> fl_int;
+        fl_int.remove(-89);
+        bst_str = fl_int.to_string();
+        if(bst_str != "") 
+        {
+            cout << "Incorrect result of removing -89 from empty BST. Expected empty string but got : " << bst_str << endl;
+        }
+        BST<float, float> fl_fl;
+        fl_fl.remove(9.0);
+        bst_str = fl_fl.to_string();
+        if(bst_str != "") 
+        {
+            cout << "Incorrect result of removing 9.0 from empty BST. Expected empty string but got : " << bst_str << endl;
+        }
+        BST<float, string> fl_str;
+        fl_str.remove("hello");
+        bst_str = fl_str.to_string();
+        if(bst_str != "") 
+        {
+            cout << "Incorrect result of removing hello from empty BST. Expected empty string but got : " << bst_str << endl;
+        }
 
-        // //
+        //
 
-        // int vals[10] = {5, 2, 7, 1, 3, 4, 6, 9, 8, 10};
-        // BST<string, int> balanced_bst;
-        // for(int i = 0; i < 10; i++) 
-        // {
-        //     balanced_bst.insert("some data", vals[i]);
-        // }
-        // balanced_bst.remove(7);
-        // bst_str = balanced_bst.to_string();
-        // if(bst_str != "5 2 8 1 3 6 9 4 10") {
-        //     cout << "Incorrect result of removing 7. Expected 5 2 8 1 3 6 9 4 10 but got : " << bst_str << endl;
-        // }
+        int vals[10] = {5, 2, 7, 1, 3, 4, 6, 9, 8, 10};
+        BST<string, int> balanced_bst;
+        for(int i = 0; i < 10; i++) 
+        {
+            balanced_bst.insert("some data", vals[i]);
+        }
+        balanced_bst.remove(7);
+        bst_str = balanced_bst.to_string();
+        if(bst_str != "5 2 8 1 3 6 9 4 10") {
+            cout << "Incorrect result of removing 7. Expected 5 2 8 1 3 6 9 4 10 but got : " << bst_str << endl;
+        }
 
-        // BST<string, int> unbalanced;
-        // int unbal[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        // for (int i=0; i<10; i++)
-        // {
-        //     unbalanced.insert("kooky", unbal[i]);
-        // }
-        // unbalanced.remove(10);
-        // bst_str = unbalanced.to_string();
-        // if(bst_str != "1 2 3 4 5 6 7 8 9") 
-        // {
-        //     cout << "Incorrect result of removing 10. Expected 1 2 3 4 5 6 7 8 9 but got : " << bst_str << endl;
-        // }
-        // unbalanced.remove(6);
-        // unbalanced.remove(3);
-        // bst_str = unbalanced.to_string();
-        // if(bst_str != "1 2 4 5 7 8 9") 
-        // {
-        //     cout << "Incorrect result of removing 6 and 3. Expected 1 2 4 5 7 8 9 but got : " << bst_str << endl;
-        // }
+        BST<string, int> unbalanced;
+        int unbal[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        for (int i=0; i<10; i++)
+        {
+            unbalanced.insert("kooky", unbal[i]);
+        }
+        unbalanced.remove(10);
+        bst_str = unbalanced.to_string();
+        if(bst_str != "1 2 3 4 5 6 7 8 9") 
+        {
+            cout << "Incorrect result of removing 10. Expected 1 2 3 4 5 6 7 8 9 but got : " << bst_str << endl;
+        }
+        unbalanced.remove(6);
+        unbalanced.remove(3);
+        bst_str = unbalanced.to_string();
+        if(bst_str != "1 2 4 5 7 8 9") 
+        {
+            cout << "Incorrect result of removing 6 and 3. Expected 1 2 4 5 7 8 9 but got : " << bst_str << endl;
+        }
 
         BST<int, int> emptied;
         emptied.insert(5, 10);
@@ -790,6 +790,16 @@ void test_remove()
         if(bst_str != "2350 -1500 500 -90 8") 
         {
             cout << "Incorrect result of removing 0 from BST. Expected 2350 -1500 500 -90 8 but got : " << bst_str << endl;
+        }
+
+        BST<string, string> nada;
+        nada.insert("","");
+        nada.insert("", "nope");
+        nada.remove("");
+        bst_str = nada.to_string();
+        if(bst_str != "nope") 
+        {
+            cout << "Incorrect result of removing empty string from BST. Expected nope but got : " << bst_str << endl;
         }
 
     } catch(exception& e) {
@@ -933,7 +943,7 @@ void test_max_data()
         BST<string, string> punct;
         punct.insert("question mark", "?");
         punct.insert("big A", "A");
-        punct.insert("quote", "'");
+        punct.insert("exlamation", "!");
         punct.insert("little a", "a");
         punct.insert("interrobang", "?!");
         punct.insert("tilde", "~");
@@ -952,8 +962,6 @@ void test_max_data()
         BST<float, float> one;
         one.insert(1.1, 13.4);
         max_fl = one.max_data();
-        //fl_str = std::to_string(max_fl);
-        // fl_str = fl_str.substr(0,3);
         if(abs(max_fl - 1.1) < 1e-9) 
         {
             cout << "Incorrect result of max_data. Expected \"1.1\" but got : " << max_fl << endl;
@@ -1162,6 +1170,8 @@ void test_min_data()
     try {
 
         string min_str;
+        int min_int;
+        float min_fl;
 
         //empties
         BST<string, string> str_str;
@@ -1171,43 +1181,43 @@ void test_min_data()
         }
         BST<string, float> str_fl;
         min_str = str_fl.min_data();
-        if(min_str != "0") {
-            cout << "Incorrect result finding min_data of empty BST. Expected 0 but got : " << min_str << endl;
+        if(min_str != "") {
+            cout << "Incorrect result finding min_data of empty BST. Expected nothing but got : " << min_str << endl;
         }
         BST<string, int> str_int;
         min_str = str_int.min_data();
-        if(min_str != "0") {
-            cout << "Incorrect result finding min_data of empty BST. Expected 0 but got : " << min_str << endl;
+        if(min_str != "") {
+            cout << "Incorrect result finding min_data of empty BST. Expected nothing but got : " << min_str << endl;
         }
         BST<float, string> fl_str;
-        min_str = fl_str.min_data();
-        if(min_str != "") {
-            cout << "Incorrect result finding min_data of empty BST. Expected nothing but got : " << min_str << endl;
+        min_fl = fl_str.min_data();
+        if(min_fl != 0) {
+            cout << "Incorrect result finding min_data of empty BST. Expected nothing but got : " << min_fl << endl;
         }
         BST<float, float> fl_fl;
-        min_str = fl_fl.min_data();
-        if(min_str != "0") {
-            cout << "Incorrect result finding min_data of empty BST. Expected 0 but got : " << min_str << endl;
+        min_fl = fl_fl.min_data();
+        if(min_fl != 0) {
+            cout << "Incorrect result finding min_data of empty BST. Expected 0 but got : " << min_fl << endl;
         }
         BST<float, int> fl_int;
-        min_str = fl_int.min_data();
-        if(min_str != "0") {
-            cout << "Incorrect result finding min_data of empty BST. Expected 0 but got : " << min_str << endl;
+        min_fl = fl_int.min_data();
+        if(min_fl != 0) {
+            cout << "Incorrect result finding min_data of empty BST. Expected 0 but got : " << min_fl << endl;
         }
         BST<int, string> int_str;
-        min_str = int_str.min_data();
-        if(min_str != "") {
-            cout << "Incorrect result finding min_data of empty BST. Expected nothing but got : " << min_str << endl;
+        min_int = int_str.min_data();
+        if(min_int != 0) {
+            cout << "Incorrect result finding min_data of empty BST. Expected nothing but got : " << min_int << endl;
         }
         BST<int, float> int_float;
-        min_str = int_float.min_data();
-        if(min_str != "0") {
-            cout << "Incorrect result finding min_data of empty BST. Expected 0 but got : " << min_str << endl;
+        min_int = int_float.min_data();
+        if(min_int != 0) {
+            cout << "Incorrect result finding min_data of empty BST. Expected 0 but got : " << min_int << endl;
         }
         BST<int, int> int_int;
-        min_str = int_int.min_data();
-        if(min_str != "0") {
-            cout << "Incorrect result finding min_data of empty BST. Expected 0 but got : " << min_str << endl;
+        min_int = int_int.min_data();
+        if(min_int != 0) {
+            cout << "Incorrect result finding min_data of empty BST. Expected 0 but got : " << min_int << endl;
         }
 
         //
@@ -1260,22 +1270,22 @@ void test_min_data()
         fruit.insert("pear", "greenish");
         fruit.insert("orange", "orange");
         min_str = fruit.min_data();
-        if(min_str != "pear") 
+        if(min_str != "apple") 
         {
-            cout << "Incorrect result of min_data. Expected \"pear\" but got : " << min_str << endl;
+            cout << "Incorrect result of min_data. Expected \"apple\" but got : " << min_str << endl;
         }
 
         BST<string, string> punct;
         punct.insert("question mark", "?");
         punct.insert("big A", "A");
-        punct.insert("quote", "'");
+        punct.insert("exclamation point", "!");
         punct.insert("little a", "a");
         punct.insert("interrobang", "?!");
         punct.insert("tilde", "~");
         min_str = punct.min_data();
-        if(min_str != "quote") 
+        if(min_str != "exclamation point") 
         {
-            cout << "Incorrect result of min_data. Expected \"quote\" but got : " << min_str << endl;
+            cout << "Incorrect result of min_data. Expected \"exclamation point\" but got : " << min_str << endl;
         }
 
         BST<int, float> floaty;
@@ -1283,10 +1293,10 @@ void test_min_data()
         floaty.insert(200, 0.1);
         floaty.insert(50000, 0.3);
         floaty.insert(0, 15.5);
-        min_str = floaty.min_data();
-        if(min_str != "200") 
+        min_int = floaty.min_data();
+        if(min_int != 0) 
         {
-            cout << "Incorrect result of min_data. Expected \"200\" but got : " << min_str << endl;
+            cout << "Incorrect result of min_data. Expected \"200\" but got : " << min_int << endl;
         }
 
         BST<int, string> alph;
@@ -1294,10 +1304,10 @@ void test_min_data()
         alph.insert(5, "E");
         alph.insert(1, "A");
         alph.insert(10, "J");
-        min_str = alph.min_data();
-        if(min_str != "1") 
+        min_int = alph.min_data();
+        if(min_int != 1) 
         {
-            cout << "Incorrect result of min_data. Expected \"1\" but got : " << min_str << endl;
+            cout << "Incorrect result of min_data. Expected \"1\" but got : " << min_int << endl;
         }
 
         BST<string, float> whatever;
@@ -1310,6 +1320,12 @@ void test_min_data()
         if(min_str != "ahaha") 
         {
             cout << "Incorrect result of min_data. Expected \"ahaha\" but got : " << min_str << endl;
+        }
+        whatever.insert("", 500.4);
+        min_str = whatever.min_data();
+        if(min_str != "") 
+        {
+            cout << "Incorrect result of min_data. Expected empty string but got : " << min_str << endl;
         }
 
     } catch(exception& e) {
@@ -2065,8 +2081,8 @@ int main() {
     test_empty();
     //test_insert(); //fixing empty stuff
     test_get();
-    test_remove(); //errors
-    //test_max_data(); //errors
+    //test_remove(); //errors
+    test_max_data(); //errors
     test_max_key(); 
     //test_min_data(); //errors
     test_min_key();
