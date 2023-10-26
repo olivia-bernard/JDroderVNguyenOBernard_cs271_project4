@@ -85,7 +85,7 @@ void BST<T1, T2>::remove(T2 k){
     Node<T1, T2>* x = search(k); // if the bst is empty, an error is thrown here
     // put in if x is null
     if (x == NULL){
-        cout << "to here " <<endl;
+        //cout << "to here " <<endl;
         return; // exit the function if node w/ given key doesn't exist
     }
     else if (x->p == NULL){ // when x is the root of the tree

@@ -163,6 +163,22 @@ void test_empty()
         {
             cout << "Incorrect empty result." << endl;
         }
+        nada.remove("");
+        if(!nada.empty()) 
+        {
+            cout << "Incorrect empty result." << endl;
+        }
+        nada.insert("", "hello");
+        if(nada.empty()) 
+        {
+            cout << "Incorrect empty result." << endl;
+        }
+        nada.remove("hello");
+        nada.insert("hi", "");
+        if(nada.empty()) 
+        {
+            cout << "Incorrect empty result." << endl;
+        }
     }
     catch(exception& e)
     {
@@ -538,6 +554,14 @@ void test_get()
         if(fl_str != "0") //no 16.6 in bst
         {
             cout << "Incorrect get result. Expected \"0.0\" because key is not in BST but got : " << fl << endl;
+        }
+
+        BST<string, string> nada;
+        nada.insert("", "");
+        val = nada.get("");
+        if(val != "") 
+        {
+            cout << "Incorrect get result. Expected empty string but got : " << val << endl;
         }
         
     } catch(exception& e) {
@@ -2041,7 +2065,7 @@ int main() {
     test_empty();
     //test_insert(); //fixing empty stuff
     test_get();
-    //test_remove(); //errors
+    test_remove(); //errors
     //test_max_data(); //errors
     test_max_key(); 
     //test_min_data(); //errors
