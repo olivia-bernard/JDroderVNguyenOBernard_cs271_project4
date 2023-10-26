@@ -35,7 +35,7 @@ int main()
     // read in file name and create the tree
     BST<string,string>* bst = create_bst<string,string>("binhex.txt");
     string res = convert<string, string>(bst, input_bin);
-    cout << "exidecimal representation of " << input_bin << " is " << res << endl;
+    cout << "hexidecimal representation of " << input_bin << " is " << res << endl;
 
     return 0;
 }

@@ -87,10 +87,6 @@ void BST<T1, T2>::remove(T2 k){
     if (x == NULL){
         return; // exit the function if node w/ given key doesn't exist
     }
-    // else if (x->p == NULL){ // when x is the root of the tree
-    //     root = NULL; // if node to be removed is the root, set root to NIL
-    //     // return; // exit
-    // }
     
     // case 1: x has1 or no child
     else if (x->left == NULL){ // when the only child is x.left
@@ -118,11 +114,6 @@ void BST<T1, T2>::remove(T2 k){
         y->left = x->left;
         y->left->p = y;
     }
-    // if (x->p ==NULL){
-    //     root = x;
-    // }
-    // x = NULL; // exit
-
 }
 
 // transplant - function to replace subtree rooted at 'u' w/ subtree rooted at 'v'
@@ -156,7 +147,6 @@ void BST<T1, T2>::transplant(Node<T1, T2>* u, Node<T1, T2>* v){ // replace subtr
 // if key exists, returns node w/ given key, otherwise return NIL
 template <typename T1, typename T2>
 Node<T1, T2>* BST<T1, T2>::search(T2 k){
-    // try{
     if (root == NULL){
         return root; // if tree is empty, return NIL
     }
@@ -170,7 +160,6 @@ Node<T1, T2>* BST<T1, T2>::search(T2 k){
                 x = x->left; // move to the left child if k is smaller than x's key
             }
         }
-        //cout <<x->key<<endl;
         return x; // return node w/ given key or NIL if not found
     }
 }
@@ -203,8 +192,6 @@ T1 BST<T1, T2>::max_data(){
 template <typename T1, typename T2>
 T1 BST<T1, T2>::traverse_max_data(T1& data, Node<T1, T2>* x){
     if (x == NULL){
-        // cout << data << endl;
-        // cout << "run 1 time"<<endl;
         return data; // return data if node is NIL
     }
     else{
@@ -240,14 +227,10 @@ T1 BST<T1, T2>::min_data(){
 template <typename T1, typename T2>
 T1 BST<T1, T2>::traverse_min_data(T1& data, Node<T1, T2>* x){
     if (x == NULL){
-        // cout << data << endl;
-        // cout << "run 1 time"<<endl;
         return data; // return data if node is NIL
     }
     else{
         T1 min_left = traverse_min_data(data, x->left); // recursively find the min data in the left subtree.
-        //cout << "x data " << x->data <<endl;
-        //cout << "data returned " << min_left << endl;
         if (x->data < min_left){
             return traverse_min_data(x->data, x->right); // recursively find the min data in the right subtree.
         }   
@@ -363,7 +346,6 @@ string BST<T1, T2>::to_string() {
     while (!q.empty() && x!= NULL) {
         x = q.front();
         s << x->key << ' ';
-        cout << x->key << endl;
         if (x->left != NULL) {
             q.push(x->left);
         }

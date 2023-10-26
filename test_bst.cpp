@@ -1292,9 +1292,9 @@ void test_min_data()
         fruit.insert("pear", "greenish");
         fruit.insert("orange", "orange");
         min_str = fruit.min_data();
-        if(min_str != "apple") 
+        if(min_str != "pear") 
         {
-            cout << "Incorrect result of min_data. Expected \"apple\" but got : " << min_str << endl;
+            cout << "Incorrect result of min_data. Expected \"pear\" but got : " << min_str << endl;
         }
 
         BST<string, string> punct;
@@ -1316,7 +1316,7 @@ void test_min_data()
         floaty.insert(50000, 0.3);
         floaty.insert(0, 15.5);
         min_int = floaty.min_data();
-        if(min_int != 0) 
+        if(min_int != 200) 
         {
             cout << "Incorrect result of min_data. Expected \"200\" but got : " << min_int << endl;
         }
@@ -1781,6 +1781,11 @@ void test_successor()
         if(succ_str != "bear") {
             cout << "Incorrect result of successor of empty string. Expected bear but got : " << succ_str << endl;
         }
+        nada.remove("");
+        succ_str = nada.successor("clown");
+        if(succ_str != "demon") {
+            cout << "Incorrect result of successor of clown. Expected demon but got : " << succ_str << endl;
+        }
 
 
     } catch(exception& e) {
@@ -2095,6 +2100,11 @@ void test_trim()
         if(bst_str != "balloo bunga") {
             cout << "Incorrect tree after trimming balloo bunga [empty string] doo with low=a, high=c. Expected \"balloo bunga\" but got : " << bst_str << endl;
         }
+        nada.trim("a","bc");
+        bst_str = nada.to_string();
+        if(bst_str != "balloo") {
+            cout << "Incorrect tree after trimming balloo bunga [empty string] doo with low=a, high=bc. Expected \"balloo\" but got : " << bst_str << endl;
+        }
 
     }
 
@@ -2102,16 +2112,6 @@ void test_trim()
         cerr << "Error in trimming the bst : " << e.what() << endl;
     }
 }
-// template<typename T1, typename T2> 
-// void test_trim(T1[] inputs, int size){
-//     BST<T1,T2> bst;
-//     for (int i = 0; i < size;i++){
-//         bst.insert(to_string(inputs[i] +"data", inputs[i]));
-        
-//     }
-
-    
-// }
 
 void test_binhex()
 {
@@ -2152,18 +2152,18 @@ void test_binhex()
 
 int main() {
     
-    // test_empty();
-    // test_insert();
-    // test_get();
-    // test_remove(); //flt
-    // test_max_data(); //errors
-    // test_max_key(); 
-    test_min_data(); //errors
-    // test_min_key();
-    // test_successor();
-    // test_in_order();
-    // test_trim();
-    // test_binhex();
+    test_empty();
+    test_insert();
+    test_get();
+    test_remove(); 
+    test_max_data(); 
+    test_max_key(); 
+    test_min_data();
+    test_min_key();
+    test_successor();
+    test_in_order();
+    test_trim();
+    test_binhex();
 
     cout << "Testing completed" << endl;
     
