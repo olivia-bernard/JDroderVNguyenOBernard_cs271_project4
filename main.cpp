@@ -28,7 +28,7 @@ int main()
     // }
 
     //main.cpp file edit
-    string input_bind;
+    string input_bin;
     cout << "Enter binary representation for conversion: " <<endl;
     cin >> input_bin;
 
