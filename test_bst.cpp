@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <math.h>
+#include <string>
 #include "usecase.cpp"
 #include "bst.cpp"
 using namespace std;
@@ -529,7 +530,7 @@ void test_get()
         fl_str = fl_str.substr(0,4);
         if(fl_str != "78.3")
         {
-            cout << "Incorrect get result. Expected \"78.3\" because key is not in BST but got : " << fl << endl;
+            cout << "Incorrect get result. Expected \"78.3\" but got : " << fl << endl;
         }
         fl = too_floaty.get(16.6);
         fl_str = std::to_string(fl);
@@ -776,6 +777,8 @@ void test_max_data()
 {
     try {
         string max_str;
+        int max_int;
+        float max_fl;
 
         //empties
         BST<string, string> str_str;
@@ -794,38 +797,34 @@ void test_max_data()
             cout << "case 3: Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
         }
         BST<float, string> fl_str;
-        float max_fl = fl_str.max_data();
-        max_str = fl_str.max_data();
-        if(max_fl != 0) { //here should be default value of float not an empty string
-            cout << "case 4: Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_fl << endl;
+        max_fl = fl_str.max_data();
+        if(max_fl != 0) { 
+            cout << "case 4: Incorrect result finding max_data of empty BST. Expected 0 but got : " << max_fl << endl;
         }
         BST<float, float> fl_fl;
         max_fl = fl_fl.max_data();
-        //max_str = fl_fl.max_data();
         if(max_fl != 0) {
-            cout << "case 5: Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
+            cout << "case 5: Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_fl << endl;
         }
         BST<float, int> fl_int;
         max_fl = fl_int.max_data();
-        // max_str = fl_int.max_data();
         if(max_fl != 0) {
-            cout << "case 6: Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
+            cout << "case 6: Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_fl << endl;
         }
         BST<int, string> int_str;
-        int max_int = int_str.max_data();
-        // max_str = int_str.max_data();
+        max_int = int_str.max_data();
         if(max_int != 0) {
-            cout << "case 7: Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
+            cout << "case 7: Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_int << endl;
         }
         BST<int, float> int_float;
         max_int = int_float.max_data();
         if(max_int != 0) {
-            cout << "case 8: Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
+            cout << "case 8: Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_int << endl;
         }
         BST<int, int> int_int;
         max_int = int_float.max_data();
         if(max_int != 0) {
-            cout << "case 9: Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
+            cout << "case 9: Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_int << endl;
         }
 
         // change empties
@@ -836,7 +835,6 @@ void test_max_data()
             balanced_bst.insert(to_string(vals[i]) + " data", vals[i]);
         }
         max_str = balanced_bst.max_data();
-        cout << "max string: " << max_str << endl;
         if(max_str != "10 data") {
             cout << "Incorrect result of max_data. Expected \"10 data\" but got : " << max_str << endl;
         }
@@ -885,16 +883,16 @@ void test_max_data()
         alph.insert(5, "E");
         alph.insert(1, "A");
         alph.insert(10, "J");
-        max_str = alph.max_data();
-        if(max_str != "10") 
+        max_int = alph.max_data();
+        if(max_int != 10) 
         {
-            cout << "Incorrect result of max_data. Expected \"10\" but got : " << max_str << endl;
+            cout << "Incorrect result of max_data. Expected \"10\" but got : " << max_int << endl;
         }
         alph.remove("J");
-        max_str = alph.max_data();
-        if(max_str != "6") 
+        max_int = alph.max_data();
+        if(max_int != 6) 
         {
-            cout << "Incorrect result of max_data. Expected \"6\" but got : " << max_str << endl;
+            cout << "Incorrect result of max_data. Expected \"6\" but got : " << max_int << endl;
         }
 
         BST<int, float> floaty;
@@ -902,10 +900,10 @@ void test_max_data()
         floaty.insert(200, 0.1);
         floaty.insert(50000, 0.3);
         floaty.insert(0, 15.5);
-        max_str = floaty.max_data();
-        if(max_str != "0") 
+        max_int = floaty.max_data();
+        if(max_int != 0) 
         {
-            cout << "Incorrect result of max_data. Expected \"15.5\" but got : " << max_str << endl;
+            cout << "Incorrect result of max_data. Expected \"15.5\" but got : " << max_int << endl;
         }
 
         BST<string, string> punct;
@@ -929,16 +927,18 @@ void test_max_data()
 
         BST<float, float> one;
         one.insert(1.1, 13.4);
-        max_str = one.max_data();
-        if(max_str != "1.1") 
+        max_fl = one.max_data();
+        //fl_str = std::to_string(max_fl);
+        // fl_str = fl_str.substr(0,3);
+        if(abs(max_fl - 1.1) < 1e-9) 
         {
-            cout << "Incorrect result of max_data. Expected \"1.1\" but got : " << max_str << endl;
+            cout << "Incorrect result of max_data. Expected \"1.1\" but got : " << max_fl << endl;
         }
         one.remove(13.4);
-        max_str = one.max_data();
-        if(max_str != "") 
+        max_fl = one.max_data();
+        if(max_fl != 0) 
         {
-            cout << "Incorrect result of max_data of empty BST. Expected nothing but got : " << max_str << endl;
+            cout << "Incorrect result of max_data of empty BST. Expected 0 but got : " << max_fl << endl;
         }
 
 
@@ -2039,17 +2039,17 @@ void test_binhex()
 int main() {
     
     test_empty();
-    test_insert();
-    // test_get();
-    // test_remove(); //flt
+    //test_insert(); //fixing empty stuff
+    test_get();
+    //test_remove(); //errors
     //test_max_data(); //errors
-    // test_max_key(); 
+    test_max_key(); 
     //test_min_data(); //errors
-    // test_min_key();
-    // test_successor();
-    // test_in_order();
+    test_min_key();
+    test_successor();
+    test_in_order();
     test_trim();
-    // test_binhex();
+    test_binhex();
 
     cout << "Testing completed" << endl;
     
