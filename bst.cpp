@@ -383,10 +383,14 @@ string BST<T1, T2>::to_string() {
     return result; // return the level-order traversal as a string
 }
 
+
+// trim - function to BST to contain only keys in a specific range [low: high]
+// preconditions: 'low' and 'high' are valid values, 'low' <= 'high'
+// postconditions: BST is modified to only contain keys with the specified range
 template <typename T1, typename T2>
 void BST<T1, T2>::trim(T2 low, T2 high){
     if (root == NULL){
-        return;
+        return; // if tree is empty, nothing to trim, exit
     }
     while(root != NULL && (root->key > high || root->key < low)){
         if (root->key < low){
