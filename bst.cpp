@@ -85,7 +85,11 @@ void BST<T1, T2>::remove(T2 k){
     Node<T1, T2>* x = search(k); // if the bst is empty, an error is thrown here
     // put in if x is null
     if (x == NULL){
+<<<<<<< Updated upstream
         //cout << "to here " <<endl;
+=======
+        // cout << "to here " <<endl;
+>>>>>>> Stashed changes
         return; // exit the function if node w/ given key doesn't exist
     }
     else if (x->p == NULL){ // when x is the root of the tree
@@ -119,6 +123,9 @@ void BST<T1, T2>::remove(T2 k){
         y->left = x->left;
         y->left->p = y;
     }
+    // if (x->p ==NULL){
+    //     root = x;
+    // }
     return; // exit
 
 }
@@ -129,10 +136,10 @@ void BST<T1, T2>::remove(T2 k){
 template <typename T1, typename T2>
 void BST<T1, T2>::transplant(Node<T1, T2>* u, Node<T1, T2>* v){ // replace subtree rooted at u with subtree rooted at v
     if (u->p == NULL){
-        root = v; // if u is the root, set v as the new root
-        return; // exit
+        root = v; // if u is the root, set v as the new root// exit
+    
     }
-    if (u == u->p->right){ 
+    else if (u == u->p->right){ 
         u->p->right = v; // set v as right child of u's parent
     }
 
@@ -362,10 +369,10 @@ string BST<T1, T2>::to_string() {
     Node<T1, T2>* x = root;
 
     q.push(root);
+
     while (!q.empty() && x!= NULL) {
-        //cout <<"to_string print out " << x->key << endl;
         x = q.front();
-        s << x->key << ' '; // Add a space after each key
+        s << x->key << ' ';
         if (x->left != NULL) {
             q.push(x->left);
         }
@@ -374,12 +381,11 @@ string BST<T1, T2>::to_string() {
         }
         q.pop();
     }
-
+   
     string result = s.str();
     if (result.length() != 0) {
         return result.substr(0, result.length()-1); // remove the evil space
     }
-
     return result; // return the level-order traversal as a string
 }
 

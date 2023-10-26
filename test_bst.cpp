@@ -210,7 +210,11 @@ void test_insert()
         nothing.insert("","");
         bst_str = nothing.to_string();
         if(bst_str != "") {
+<<<<<<< Updated upstream
             cout << "Incorrect result of inserting empty string. Expected one space but got : " << bst_str << endl;
+=======
+            cout << "Incorrect result of inserting empty string. Expected nothing but got : " << bst_str << endl;
+>>>>>>> Stashed changes
         }
         nothing.insert("blah", "");
         bst_str = nothing.to_string();
@@ -218,9 +222,9 @@ void test_insert()
             cout << "Incorrect result of inserting blah and empty string. Expected nothing but got : " << bst_str << endl;
         }
         nothing.insert("", "boo");
-        bst_str = nothing.to_string();
-        if(bst_str != "  boo") {
-            cout << "Incorrect result of inserting empty string and boo. Expected boo but got : " << bst_str << endl;
+        string nothing_str = nothing.to_string();
+        if(nothing_str != "  boo") { //2 spaces becasue we have 2 previous empty strings each is sepereated by a white space
+            cout << "Incorrect result of inserting empty string and boo. Expected boo but got : " << nothing_str << endl;
         }
 
         int vals[10] = {5, 2, 7, 1, 3, 4, 6, 9, 8, 10};
@@ -576,11 +580,21 @@ void test_remove()
 
         BST<string, int> str_int;
         str_int.remove(0);
+<<<<<<< Updated upstream
         bst_str = str_int.to_string();
+=======
+        // cout << "done remove elem that not there" <<endl;
+        bst_str = str_int.to_string();
+        // cout << "here" << endl;
+>>>>>>> Stashed changes
         if(bst_str != "") 
         {
             cout << "Incorrect result of removing 0 from empty BST. Expected empty string but got : " << bst_str << endl;
         }
+<<<<<<< Updated upstream
+=======
+        // cout << "here" << endl;
+>>>>>>> Stashed changes
         BST<string, float> str_fl;
         str_fl.remove(-10.5);
         bst_str = str_fl.to_string();
@@ -639,7 +653,11 @@ void test_remove()
         }
 
         //
+<<<<<<< Updated upstream
 
+=======
+        string new_str ="";
+>>>>>>> Stashed changes
         int vals[10] = {5, 2, 7, 1, 3, 4, 6, 9, 8, 10};
         BST<string, int> balanced_bst;
         for(int i = 0; i < 10; i++) 
@@ -647,11 +665,20 @@ void test_remove()
             balanced_bst.insert("some data", vals[i]);
         }
         balanced_bst.remove(7);
+<<<<<<< Updated upstream
         bst_str = balanced_bst.to_string();
         if(bst_str != "5 2 8 1 3 6 9 4 10") {
             cout << "Incorrect result of removing 7. Expected 5 2 8 1 3 6 9 4 10 but got : " << bst_str << endl;
         }
 
+=======
+        // cout << (balanced_bst ==NULL)
+        new_str = balanced_bst.to_string();
+        if(new_str != "5 2 8 1 3 6 9 4 10") {
+            cout << "Here: Incorrect result of removing 7. Expected 5 2 8 1 3 6 9 4 10 but got : " << new_str << endl;
+        }
+        string str1 = "";
+>>>>>>> Stashed changes
         BST<string, int> unbalanced;
         int unbal[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         for (int i=0; i<10; i++)
@@ -659,10 +686,17 @@ void test_remove()
             unbalanced.insert("kooky", unbal[i]);
         }
         unbalanced.remove(10);
+<<<<<<< Updated upstream
         bst_str = unbalanced.to_string();
         if(bst_str != "1 2 3 4 5 6 7 8 9") 
         {
             cout << "Incorrect result of removing 10. Expected 1 2 3 4 5 6 7 8 9 but got : " << bst_str << endl;
+=======
+        str1 = unbalanced.to_string();
+        if(str1 != "1 2 3 4 5 6 7 8 9") 
+        {
+            cout << "Here: Incorrect result of removing 10. Expected 1 2 3 4 5 6 7 8 9 but got : " << str1 << endl;
+>>>>>>> Stashed changes
         }
         unbalanced.remove(6);
         unbalanced.remove(3);
@@ -672,14 +706,15 @@ void test_remove()
             cout << "Incorrect result of removing 6 and 3. Expected 1 2 4 5 7 8 9 but got : " << bst_str << endl;
         }
 
+        string str2;
         BST<int, int> emptied;
         emptied.insert(5, 10);
         emptied.insert(-5, -10);
         emptied.remove(10);
-        bst_str = emptied.to_string();
-        if(bst_str != "-10") 
+        str2 = emptied.to_string();
+        if(str2 != "-10") 
         {
-            cout << "Incorrect result of removing 10. Expected -10 but got : " << bst_str << endl;
+            cout << "Incorrect result of removing 10. Expected -10 but got : " << str2 << endl;
         }
         emptied.remove(-5);
         bst_str = emptied.to_string();
@@ -691,7 +726,7 @@ void test_remove()
         bst_str = emptied.to_string();
         if(bst_str != "") 
         {
-            cout << "Incorrect result of removing -10. Expected nothing but got : " << bst_str << endl;
+            cout << "Here 1: Incorrect result of removing -10. Expected nothing but got : " << bst_str << endl;
         }
         emptied.remove(0);
         bst_str = emptied.to_string();
@@ -2057,7 +2092,16 @@ void test_trim()
         cerr << "Error in trimming the bst : " << e.what() << endl;
     }
 }
+// template<typename T1, typename T2> 
+// void test_trim(T1[] inputs, int size){
+//     BST<T1,T2> bst;
+//     for (int i = 0; i < size;i++){
+//         bst.insert(to_string(inputs[i] +"data", inputs[i]));
+        
+//     }
 
+    
+// }
 
 void test_binhex()
 {
@@ -2098,6 +2142,7 @@ void test_binhex()
 
 int main() {
     
+<<<<<<< Updated upstream
     test_empty();
     test_insert();
     test_get();
@@ -2110,6 +2155,20 @@ int main() {
     test_in_order();
     test_trim();
     test_binhex();
+=======
+    // test_empty();
+    // test_insert();
+    // test_get();
+    test_remove(); //flt
+    // test_max_data(); //errors
+    // test_max_key(); 
+    //test_min_data(); //errors
+    // test_min_key();
+    // test_successor();
+    // test_in_order();
+    // test_trim();
+    // test_binhex();
+>>>>>>> Stashed changes
 
     cout << "Testing completed" << endl;
     

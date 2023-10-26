@@ -13,7 +13,7 @@ usecase: main.cpp
 	g++ main.cpp -o usecase
 
 clean:
-	rm test usecase
+	rm test 
 
 # -----
 
