@@ -2093,7 +2093,7 @@ void test_binhex()
 int main() {
     
     test_empty();
-    test_insert(); //fixing empty stuff
+    test_insert();
     test_get();
     //test_remove(); //errors
     //test_max_data(); //errors
