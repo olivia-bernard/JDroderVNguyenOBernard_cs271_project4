@@ -1867,9 +1867,6 @@ void test_in_order()
 void test_trim() 
 {
     try {
-        void test_trim() 
-{
-    try {
         string bst_str;
 
         BST<string, string> ss;
@@ -1982,11 +1979,11 @@ void test_trim()
         if(bst_str != "33.4 21.3 293.5 5.3") {
             cout << "Incorrect tree after trimming 33.4 496.3 293.5 21.3 5.3 with low=1, high=3. Expected 3 2 1 but got : " << bst_str << endl;
         }
+    }
 
     } catch(exception& e) {
         cerr << "Error in trimming the bst : " << e.what() << endl;
     }
-}
 
 
 void test_binhex()
