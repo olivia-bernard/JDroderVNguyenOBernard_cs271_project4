@@ -85,17 +85,13 @@ void BST<T1, T2>::remove(T2 k){
     Node<T1, T2>* x = search(k); // if the bst is empty, an error is thrown here
     // put in if x is null
     if (x == NULL){
-<<<<<<< Updated upstream
-        //cout << "to here " <<endl;
-=======
         // cout << "to here " <<endl;
->>>>>>> Stashed changes
         return; // exit the function if node w/ given key doesn't exist
     }
-    else if (x->p == NULL){ // when x is the root of the tree
-        root = NULL; // if node to be removed is the root, set root to NIL
-        return; // exit
-    }
+    // else if (x->p == NULL){ // when x is the root of the tree
+    //     root = NULL; // if node to be removed is the root, set root to NIL
+    //     // return; // exit
+    // }
     
     // case 1: x has1 or no child
     else if (x->left == NULL){ // when the only child is x.left
@@ -126,7 +122,7 @@ void BST<T1, T2>::remove(T2 k){
     // if (x->p ==NULL){
     //     root = x;
     // }
-    return; // exit
+    // x = NULL; // exit
 
 }
 
@@ -192,16 +188,13 @@ Node<T1, T2>* BST<T1, T2>::search(T2 k){
 template <typename T1, typename T2>
 T1 BST<T1, T2>::max_data(){
     if (root == NULL){
-         return T1(); // if tree is empty, return default value of T1
+        return T1(); // if tree is empty, return default val of T2
     }
-
-    T1 res = root->data; // initialize 'res' with root's data
-    // cout <<root->data <<endl;
-    res = traverse_max_data(res, root); // find max data in tree
-    // if (res < max_tree){
-    //     return max_tree;
-    // }
-    return res; // return max data
+    Node<T1, T2>* temp = root;
+    while (temp->right != NULL){
+        temp = temp->right; // traverse to leftmost node to find min key
+    }
+    return temp->data;
 }
 
 
@@ -233,15 +226,13 @@ T1 BST<T1, T2>::traverse_max_data(T1& data, Node<T1, T2>* x){
 template <typename T1, typename T2>
 T1 BST<T1, T2>::min_data(){
     if (root == NULL){
-         return T1(); // if tree is empty, return default value of T1
+        return T1(); // if tree is empty, return default val of T2
     }
-    T1 res = root->data; // initialize 'res' with root's data
-    // cout <<root->data <<endl;
-    res = traverse_min_data(res, root); // find min data in the tree
-    // if (res < max_tree){
-    //     return max_tree;
-    // }
-    return res; // return min data
+    Node<T1, T2>* temp = root;
+    while (temp->left != NULL){
+        temp = temp->left; // traverse to leftmost node to find min key
+    }
+    return temp->data;
 }
 
 // traverse_min_data - helper function to recursively find the min data in a subtree rooted at 'x'
@@ -373,6 +364,7 @@ string BST<T1, T2>::to_string() {
     while (!q.empty() && x!= NULL) {
         x = q.front();
         s << x->key << ' ';
+        cout << x->key << endl;
         if (x->left != NULL) {
             q.push(x->left);
         }
