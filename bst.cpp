@@ -356,12 +356,14 @@ void BST<T1, T2>::in_order_helper(ostream& s, Node<T1, T2>* x){
 // postconditions: return a space-separated string representation of the keys in level-order traversal
 template <typename T1, typename T2>
 string BST<T1, T2>::to_string() {
+
     stringstream s;
     queue<Node<T1, T2>*> q;
     Node<T1, T2>* x = root;
 
-    q.push(x);
-    while (!q.empty() && x!=NULL) {
+    q.push(root);
+    while (!q.empty() && x!= NULL) {
+        cout <<"to_string print out " << x->key << endl;
         x = q.front();
         s << x->key << ' '; // Add a space after each key
         if (x->left != NULL) {
@@ -374,12 +376,19 @@ string BST<T1, T2>::to_string() {
     }
 
     string result = s.str();
+<<<<<<< Updated upstream
     if (!result.empty()) {
         result.pop_back(); // remove the trailing space
+=======
+    if (result.length() != 0) {
+        return result.substr(0, result.length()-1); // remove the evil space
+>>>>>>> Stashed changes
     }
 
     return result; // return the level-order traversal as a string
 }
+
+template<typename T1, T2>
 
 
 
