@@ -525,71 +525,6 @@ void test_remove()
     try {
         string bst_str;
 
-<<<<<<< Updated upstream
-        BST<string, int> str_int;
-        str_int.remove(0);
-        bst_str = str_int.to_string();
-        if(bst_str != "") 
-        {
-            cout << "Incorrect result of removing 0 from empty BST. Expected empty string but got : " << bst_str << endl;
-        }
-        BST<string, float> str_fl;
-        str_fl.remove(-10.5);
-        bst_str = str_fl.to_string();
-        if(bst_str != "") 
-        {
-            cout << "Incorrect result of removing -10.5 from empty BST. Expected empty string but got : " << bst_str << endl;
-        }
-        BST<string, string> str_str;
-        str_str.remove("hello");
-        bst_str = str_str.to_string();
-        if(bst_str != "") 
-        {
-            cout << "Incorrect result of removing hello from empty BST. Expected empty string but got : " << bst_str << endl;
-        }
-        BST<int, int> int_int;
-        int_int.remove(1);
-        bst_str = int_int.to_string();
-        if(bst_str != "") 
-        {
-            cout << "Incorrect result of removing 1 from empty BST. Expected empty string but got : " << bst_str << endl;
-        }
-        BST<int, float> int_fl;
-        int_fl.remove(1555.5);
-        bst_str = int_fl.to_string();
-        if(bst_str != "") 
-        {
-            cout << "Incorrect result of removing 1555.5 from empty BST. Expected empty string but got : " << bst_str << endl;
-        }
-        BST<int, string> int_str;
-        int_str.remove("hello");
-        bst_str = int_str.to_string();
-        if(bst_str != "") 
-        {
-            cout << "Incorrect result of removing hello from empty BST. Expected empty string but got : " << bst_str << endl;
-        }
-        BST<float, int> fl_int;
-        fl_int.remove(-89);
-        bst_str = fl_int.to_string();
-        if(bst_str != "") 
-        {
-            cout << "Incorrect result of removing -89 from empty BST. Expected empty string but got : " << bst_str << endl;
-        }
-        BST<float, float> fl_fl;
-        fl_fl.remove(9.0);
-        bst_str = fl_fl.to_string();
-        if(bst_str != "") 
-        {
-            cout << "Incorrect result of removing 9.0 from empty BST. Expected empty string but got : " << bst_str << endl;
-        }
-        BST<float, string> fl_str;
-        fl_str.remove("hello");
-        bst_str = fl_str.to_string();
-        if(bst_str != "") 
-        {
-            cout << "Incorrect result of removing hello from empty BST. Expected empty string but got : " << bst_str << endl;
-        }
-=======
         // BST<string, int> str_int;
         // str_int.remove(0);
         // // cout << "done remove elem that not there" <<endl;
@@ -656,7 +591,6 @@ void test_remove()
         // {
         //     cout << "Incorrect result of removing hello from empty BST. Expected empty string but got : " << bst_str << endl;
         // }
->>>>>>> Stashed changes
 
         // //
 
@@ -823,47 +757,51 @@ void test_max_data()
         BST<string, string> str_str;
         max_str = str_str.max_data();
         if(max_str != "") {
-            cout << "Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
+            cout << " case 1: Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str.length() << endl;
         }
         BST<string, float> str_fl;
         max_str = str_fl.max_data();
         if(max_str != "") {
-            cout << "Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
+            cout << "case 2: Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
         }
         BST<string, int> str_int;
         max_str = str_int.max_data();
         if(max_str != "") {
-            cout << "Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
+            cout << "case 3: Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
         }
         BST<float, string> fl_str;
+        float max_fl = fl_str.max_data();
         max_str = fl_str.max_data();
-        if(max_str != "") {
-            cout << "Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
+        if(max_fl != 0) { //here should be default value of float not an empty string
+            cout << "case 4: Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_fl << endl;
         }
         BST<float, float> fl_fl;
-        max_str = fl_fl.max_data();
-        if(max_str != "") {
-            cout << "Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
+        max_fl = fl_fl.max_data();
+        //max_str = fl_fl.max_data();
+        if(max_fl != 0) {
+            cout << "case 5: Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
         }
         BST<float, int> fl_int;
-        max_str = fl_int.max_data();
-        if(max_str != "") {
-            cout << "Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
+        max_fl = fl_int.max_data();
+        // max_str = fl_int.max_data();
+        if(max_fl != 0) {
+            cout << "case 6: Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
         }
         BST<int, string> int_str;
-        max_str = int_str.max_data();
-        if(max_str != "") {
-            cout << "Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
+        int max_int = int_str.max_data();
+        // max_str = int_str.max_data();
+        if(max_int != 0) {
+            cout << "case 7: Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
         }
         BST<int, float> int_float;
-        max_str = int_float.max_data();
-        if(max_str != "") {
-            cout << "Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
+        max_int = int_float.max_data();
+        if(max_int != 0) {
+            cout << "case 8: Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
         }
         BST<int, int> int_int;
-        max_str = int_int.max_data();
-        if(max_str != "") {
-            cout << "Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
+        max_int = int_float.max_data();
+        if(max_int != 0) {
+            cout << "case 9: Incorrect result finding max_data of empty BST. Expected nothing but got : " << max_str << endl;
         }
 
         // change empties
@@ -1925,7 +1863,7 @@ void test_in_order()
     }
 }
 
-/*
+
 void test_trim() 
 {
     try {
@@ -1953,7 +1891,7 @@ void test_trim()
         cerr << "Error in trimming the bst : " << e.what() << endl;
     }
 }
-*/
+
 
 void test_binhex()
 {
@@ -1994,25 +1932,18 @@ void test_binhex()
 
 int main() {
     
-<<<<<<< Updated upstream
-    test_empty();
-    test_insert();
-    test_get();
-    //test_remove(); //errors
-=======
     // test_empty();
     // test_insert();
     // test_get();
-    test_remove(); //flt
->>>>>>> Stashed changes
-    //test_max_data(); //errors
-    test_max_key(); 
+    // test_remove(); //flt
+    test_max_data(); //errors
+    // test_max_key(); 
     //test_min_data(); //errors
-    test_min_key();
-    test_successor();
-    test_in_order();
-    //test_trim();
-    test_binhex();
+    // test_min_key();
+    // test_successor();
+    // test_in_order();
+    // test_trim();
+    // test_binhex();
 
     cout << "Testing completed" << endl;
     

@@ -376,19 +376,49 @@ string BST<T1, T2>::to_string() {
     }
 
     string result = s.str();
-<<<<<<< Updated upstream
-    if (!result.empty()) {
-        result.pop_back(); // remove the trailing space
-=======
     if (result.length() != 0) {
         return result.substr(0, result.length()-1); // remove the evil space
->>>>>>> Stashed changes
     }
 
     return result; // return the level-order traversal as a string
 }
 
-template<typename T1, T2>
+template <typename T1, typename T2>
+void BST<T1, T2>::trim(T2 low, T2 high){
+    if (root == NULL){
+        return;
+    }
+    while(root != NULL && (root->key > high || root->key < low)){
+        if (root->key < low){
+            root = root->right;
+            root->p = NULL;
+        }
+        else if (root->key > high){
+            root = root->left;
+            root->p = NULL;
+        }
+    }
+    if (root != NULL){
+        // search for the node x that has key smaller than low
+        Node<T1, T2>* x = root;
+        while(x != NULL && x->key >= low){
+            x = x->left;
+        }
+        if (x!= NULL){
+            // cut off x
+            transplant(x, x->right);
+        }
+
+        //search for the node y that has key greater than high
+        x = root;
+        while(x != NULL && x->key <= high){
+            x = x->right;
+        }
+        if (x!=NULL){
+            transplant(x, x->left);
+        }
+    }
+}
 
 
 

@@ -1,18 +1,24 @@
 # -*- Makefile -*-
 
+# -----
 # target: dependencies
 # 	action
 
-all: test 
+# all: test 
 
-test: test_bst.cpp 
-	g++ test_bst.cpp -o test
+# test: test_bst.cpp 
+# 	g++ test_bst.cpp -o test
 
-usecase: main.cpp 
-	g++ main.cpp -o usecase
+# usecase: main.cpp 
+# 	g++ main.cpp usecase.cpp -o usecase
 
-clean:
-	rm test usecase
+# main.o: main.cpp usecase.cpp bst.cpp bst.h
+# 	g++ -c main.cpp
+
+# clean:
+# 	rm test usecase
+
+# -----
 
 # test: bst.cpp #change to test_bst later
 #	g++ bst.cpp -o test
@@ -35,3 +41,9 @@ clean:
 
 # clean:
 # 	rm test usecase
+
+driver: main.o 
+	g++ -o usecase main.o
+
+main.o: main.cpp usecase.cpp bst.cpp bst.h
+	g++ -c main.cpp

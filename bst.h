@@ -74,6 +74,7 @@ class BST
         T2 successor(T2 k);
         string in_order();
         string to_string();
+        void trim(T2 low, T2 high);
 
     private:
         Node<T1, T2>* root;
