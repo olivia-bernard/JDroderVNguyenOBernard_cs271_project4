@@ -207,11 +207,11 @@ void test_insert()
         }
 
         BST<string, string> nothing;
-        // nothing.insert("","");
-        // bst_str = nothing.to_string();
-        // if(bst_str != "") {
-        //     cout << "Incorrect result of inserting empty string. Expected nothing but got : " << bst_str << endl;
-        // }
+        nothing.insert("","");
+        bst_str = nothing.to_string();
+        if(bst_str != "") {
+            cout << "Incorrect result of inserting empty string. Expected one space but got : " << bst_str << endl;
+        }
         nothing.insert("blah", "");
         bst_str = nothing.to_string();
         if(bst_str != " ") {
@@ -971,6 +971,20 @@ void test_max_data()
         if(max_fl != 0) 
         {
             cout << "Incorrect result of max_data of empty BST. Expected 0 but got : " << max_fl << endl;
+        }
+        
+        BST<string, string> nada;
+        nada.insert("", "");
+        max_str = nada.max_data();
+        if(max_str != "") 
+        {
+            cout << "Incorrect result of max_data with empty string inserted. Expected empty string but got : " << max_str << endl;
+        }
+        nada.insert("hi", "there");
+        max_str = nada.max_data();
+        if(max_str != "hi") 
+        {
+            cout << "Incorrect result of max_data with empty string and \"hi, there\" inserted. Expected hi but got : " << max_str << endl;
         }
 
 
@@ -2079,10 +2093,10 @@ void test_binhex()
 int main() {
     
     test_empty();
-    //test_insert(); //fixing empty stuff
+    test_insert(); //fixing empty stuff
     test_get();
     //test_remove(); //errors
-    test_max_data(); //errors
+    //test_max_data(); //errors
     test_max_key(); 
     //test_min_data(); //errors
     test_min_key();
