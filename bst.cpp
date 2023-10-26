@@ -176,17 +176,18 @@ Node<T1, T2>* BST<T1, T2>::search(T2 k){
 template <typename T1, typename T2>
 T1 BST<T1, T2>::max_data(){
     if (root == NULL){
-        return T1(); // if tree is empty, return default val of T2
+        return T1(); // if tree is empty, return default val of T1
     }
     Node<T1, T2>* temp = root;
     while (temp->right != NULL){
-        temp = temp->right; // traverse to leftmost node to find min key
+        temp = temp->right; // traverse to rightmost node to find min key
     }
-    return temp->data;
+    return temp->data; // return max data
 }
 
 
 // traverse_max_data -- helper function to recursively find the max data in a subtree rooted at 'x'
+// ONLY HERE FOR BRAGGING RIGHTS
 // preconditions: data is valid
 // postcondition: recursively returns the max data node, or NIL otherwise
 template <typename T1, typename T2>
@@ -212,16 +213,17 @@ T1 BST<T1, T2>::traverse_max_data(T1& data, Node<T1, T2>* x){
 template <typename T1, typename T2>
 T1 BST<T1, T2>::min_data(){
     if (root == NULL){
-        return T1(); // if tree is empty, return default val of T2
+        return T1(); // if tree is empty, return default val of T1
     }
     Node<T1, T2>* temp = root;
     while (temp->left != NULL){
         temp = temp->left; // traverse to leftmost node to find min key
     }
-    return temp->data;
+    return temp->data; // return min data
 }
 
 // traverse_min_data - helper function to recursively find the min data in a subtree rooted at 'x'
+// ONLY IN HERE FOR BRAGGING RIGHTS
 // preconditions: data is valid
 // postconditions: recursively returns the min data node, or NIL otherwise.
 template <typename T1, typename T2>
@@ -337,27 +339,27 @@ void BST<T1, T2>::in_order_helper(ostream& s, Node<T1, T2>* x){
 template <typename T1, typename T2>
 string BST<T1, T2>::to_string() {
 
-    stringstream s;
-    queue<Node<T1, T2>*> q;
-    Node<T1, T2>* x = root;
+    stringstream s; // stringstream to build representation
+    queue<Node<T1, T2>*> q; // create queue for level-order traversal
+    Node<T1, T2>* x = root; // initialize x as root
 
-    q.push(root);
+    q.push(root); // add root to queue
 
-    while (!q.empty() && x!= NULL) {
-        x = q.front();
-        s << x->key << ' ';
-        if (x->left != NULL) {
+    while (!q.empty() && x!= NULL) { // Continue while the queue is not empty and 'x' is not NIL
+        x = q.front(); // get front node from queue
+        s << x->key << ' '; // add key of node to stringstream
+        if (x->left != NULL) { // if node has left child, add to queue
             q.push(x->left);
         }
-        if (x->right != NULL) {
+        if (x->right != NULL) { // if node has right child, add to queue
             q.push(x->right);
         }
-        q.pop();
+        q.pop(); // remove front node from queue
     }
    
-    string result = s.str();
+    string result = s.str(); // get str from stringstream
     if (result.length() != 0) {
-        return result.substr(0, result.length()-1); // remove the evil space
+        return result.substr(0, result.length()-1); // remove the trailing space
     }
     return result; // return the level-order traversal as a string
 }
@@ -372,12 +374,13 @@ void BST<T1, T2>::trim(T2 low, T2 high){
         return; // if tree is empty, nothing to trim, exit
     }
     while(root != NULL && (root->key > high || root->key < low)){
+        // remove nodes outside low:high range from root
         if (root->key < low){
-            root = root->right;
+            root = root->right; // move right child and set parents to NIL
             root->p = NULL;
         }
         else if (root->key > high){
-            root = root->left;
+            root = root->left; // move to left child and set its parent to NIL
             root->p = NULL;
         }
     }
@@ -388,7 +391,7 @@ void BST<T1, T2>::trim(T2 low, T2 high){
             x = x->left;
         }
         if (x!= NULL){
-            // cut off x
+            // cut off x by replacing it w/ its right child
             transplant(x, x->right);
         }
 
@@ -398,7 +401,7 @@ void BST<T1, T2>::trim(T2 low, T2 high){
             x = x->right;
         }
         if (x!=NULL){
-            transplant(x, x->left);
+            transplant(x, x->left); // cut off 'x' by replacing it w/ its left child
         }
     }
 }
