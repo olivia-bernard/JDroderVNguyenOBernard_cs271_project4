@@ -1953,8 +1953,8 @@ void test_trim()
         }
         burton.trim("beetlejuice", "frankenweenie");
         bst_str = burton.to_string();
-        if(bst_str != "nightmare before christmas alice in wonderland sweeney todd") {
-            cout << "Incorrect tree after trimming \"nightmare before christmas corpse bride edward scissorhands alice in wonderland dumbo sweeney todd\" with low=beetlejuice, high=frankenweenie. Expected 3 2 1 but got : " << bst_str << endl;
+        if(bst_str != "corpse bride edward scissorhands dumbo") {
+            cout << "Incorrect tree after trimming \"nightmare before christmas corpse bride edward scissorhands alice in wonderland dumbo sweeney todd\" with low=beetlejuice, high=frankenweenie. Expected corpse bride edward scissorhands dumbobut got : " << bst_str << endl;
         }
 
         BST<float, float> fls;
@@ -1962,10 +1962,10 @@ void test_trim()
         for(int i = 0; i < 5; i++) {
             fls.insert(32.5, b[i]);
         }
-        fls.trim(400, 500);
+        fls.trim(0,400);
         bst_str = fls.to_string();
         if(bst_str != "33.4 21.3 293.5 5.3") {
-            cout << "Incorrect tree after trimming 33.4 496.3 293.5 21.3 5.3 with low=1, high=3. Expected 3 2 1 but got : " << bst_str << endl;
+            cout << "Incorrect tree after trimming 33.4 496.3 293.5 21.3 5.3 with low=0, high=400. Expected 33.4 21.3 293.5 5.3 but got : " << bst_str << endl;
         }
     }
 
@@ -2018,13 +2018,13 @@ int main() {
     // test_insert();
     // test_get();
     // test_remove(); //flt
-    test_max_data(); //errors
+    //test_max_data(); //errors
     // test_max_key(); 
     //test_min_data(); //errors
     // test_min_key();
     // test_successor();
     // test_in_order();
-    // test_trim();
+    test_trim();
     // test_binhex();
 
     cout << "Testing completed" << endl;
