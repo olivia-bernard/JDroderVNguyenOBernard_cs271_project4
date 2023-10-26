@@ -1894,63 +1894,51 @@ void test_trim()
             cout << "Incorrect tree after trimming empty tree. Expected nothing but got : " << bst_str << endl;
         }
         BST<int, int> ii;
-        ii.trim(1,3)
+        ii.trim(1,3);
         bst_str = ii.to_string();
         if(bst_str != "") {
             cout << "Incorrect tree after trimming empty tree. Expected nothing but got : " << bst_str << endl;
         }
         BST<int, float> i_f;
-        i_f.trim(1,3)
+        i_f.trim(1,3);
         bst_str = i_f.to_string();
         if(bst_str != "") {
             cout << "Incorrect tree after trimming empty tree. Expected nothing but got : " << bst_str << endl;
         }
         BST<float, string> fs;
-        fs.trim(1,3)
+        fs.trim("gummy bears","lolipops");
         bst_str = fs.to_string();
         if(bst_str != "") {
             cout << "Incorrect tree after trimming empty tree. Expected nothing but got : " << bst_str << endl;
         }
         BST<float, int> fi;
-        fi.trim(1,3)
+        fi.trim(1,3);
         bst_str = fi.to_string();
         if(bst_str != "") {
             cout << "Incorrect tree after trimming empty tree. Expected nothing but got : " << bst_str << endl;
         }
         BST<float, float> ff;
-        ff.trim(1,3)
+        ff.trim(1,3);
         bst_str = ff.to_string();
         if(bst_str != "") {
             cout << "Incorrect tree after trimming empty tree. Expected nothing but got : " << bst_str << endl;
         }
 
-
         BST<string,int> bst;
-        int vals[3] = {1, 0, 2};
+        int vals2[3] = {1, 0, 2};
         for(int i = 0; i < 3; i++) {
-            bst.insert(to_string(vals[i])+" data", vals[i]);
+            bst.insert(to_string(vals2[i])+" data", vals2[i]);
         }
         bst.trim(1,2);
-
-
-        BST<string,int> bst;
-        int vals[3] = {1, 0, 2};
-        for(int i = 0; i < 3; i++) {
-            bst.insert(to_string(vals[i])+" data", vals[i]);
-        }
-        bst.trim(1,2);
-        string bst_str = bst.to_string();
+        bst_str = bst.to_string();
         if(bst_str != "1 2") {
             cout << "Incorrect tree after trimming 1 0 2 with low=1, high=2. Expected 1 2 but got : " << bst_str << endl;
         }
-        +        bst_str = bst.to_string();
-        if(bst_str != "1 2") {
-            cout << "Incorrect tree after trimming 1 0 2 with low=1, high=2. Expected 1 2 but got : " << bst_str << endl;
-        }
+        
         BST<string, int> bst2;
-        int vals2[5] = {3, 0, 4, 2, 1};
+        int vals3[5] = {3, 0, 4, 2, 1};
         for(int i = 0; i < 5; i++) {
-            bst2.insert(to_string(vals2[i])+" data", vals2[i]);
+            bst2.insert(to_string(vals3[i])+" data", vals3[i]);
         }
         bst2.trim(1,3);
         bst_str = bst2.to_string();
@@ -1961,7 +1949,7 @@ void test_trim()
         BST<string, string> burton;
         string s[6] = {"nightmare before christmas", "corpse bride", "edward scissorhands", "alice in wonderland", "dumbo", "sweeney todd"};
         for(int i = 0; i < 6; i++) {
-            burton.insert(to_string(s[i])+" data", s[i]);
+            burton.insert(s[i]+" data", s[i]);
         }
         burton.trim("beetlejuice", "frankenweenie");
         bst_str = burton.to_string();
@@ -1970,9 +1958,9 @@ void test_trim()
         }
 
         BST<float, float> fls;
-        int i[5] = {33.4, 496.3, 293.5, 21.3, 5.3};
+        float b[5] = {33.4, 496.3, 293.5, 21.3, 5.3};
         for(int i = 0; i < 5; i++) {
-            fls.insert(to_string(i[i])+" data", i[i]);
+            fls.insert(32.5, b[i]);
         }
         fls.trim(400, 500);
         bst_str = fls.to_string();
@@ -1981,9 +1969,10 @@ void test_trim()
         }
     }
 
-    } catch(exception& e) {
+    catch(exception& e) {
         cerr << "Error in trimming the bst : " << e.what() << endl;
     }
+}
 
 
 void test_binhex()
@@ -2017,7 +2006,7 @@ void test_binhex()
         }
        
     } catch(exception& e) {
-        cerr << "Error converting binary to hex : " << i.what() << endl;
+        cerr << "Error converting binary to hex : " << e.what() << endl;
     }
 
 }
