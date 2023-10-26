@@ -363,7 +363,7 @@ string BST<T1, T2>::to_string() {
 
     q.push(root);
     while (!q.empty() && x!= NULL) {
-        cout <<"to_string print out " << x->key << endl;
+        //cout <<"to_string print out " << x->key << endl;
         x = q.front();
         s << x->key << ' '; // Add a space after each key
         if (x->left != NULL) {

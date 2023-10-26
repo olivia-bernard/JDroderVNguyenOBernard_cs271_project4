@@ -155,6 +155,13 @@ void test_empty()
         {
             cout << "Incorrect empty result." << endl;
         }
+
+        BST<string, string> nada;
+        nada.insert("","");
+        if(nada.empty()) 
+        {
+            cout << "Incorrect empty result." << endl;
+        }
     }
     catch(exception& e)
     {
@@ -180,6 +187,23 @@ void test_insert()
         if(bst_str != "1 2 3 4 5 6 7 8 9 10") 
         {
             cout << "Incorrect result of inserting keys 1-10 in order. Expected 1 2 3 4 5 6 7 8 9 10 but got : " << bst_str << endl;
+        }
+
+        BST<string, string> nothing;
+        nothing.insert("","");
+        bst_str = nothing.to_string();
+        if(bst_str != "") {
+            cout << "Incorrect result of inserting empty string. Expected nothing but got : " << bst_str << endl;
+        }
+        nothing.insert("blah", "");
+        bst_str = nothing.to_string();
+        if(bst_str != " ") {
+            cout << "Incorrect result of inserting blah and empty string. Expected nothing but got : " << bst_str << endl;
+        }
+        nothing.insert("", "boo");
+        bst_str = nothing.to_string();
+        if(bst_str != "  boo") {
+            cout << "Incorrect result of inserting empty string and boo. Expected boo but got : " << bst_str << endl;
         }
 
         int vals[10] = {5, 2, 7, 1, 3, 4, 6, 9, 8, 10};
@@ -2014,8 +2038,8 @@ void test_binhex()
 
 int main() {
     
-    // test_empty();
-    // test_insert();
+    test_empty();
+    test_insert();
     // test_get();
     // test_remove(); //flt
     //test_max_data(); //errors
