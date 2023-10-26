@@ -576,14 +576,11 @@ void test_remove()
 
         BST<string, int> str_int;
         str_int.remove(0);
-        // cout << "done remove elem that not there" <<endl;
         bst_str = str_int.to_string();
-        // cout << "here" << endl;
         if(bst_str != "") 
         {
             cout << "Incorrect result of removing 0 from empty BST. Expected empty string but got : " << bst_str << endl;
         }
-        //cout << "here" << endl;
         BST<string, float> str_fl;
         str_fl.remove(-10.5);
         bst_str = str_fl.to_string();
@@ -934,10 +931,11 @@ void test_max_data()
         floaty.insert(200, 0.1);
         floaty.insert(50000, 0.3);
         floaty.insert(0, 15.5);
+        cout << floaty.to_string() << endl;
         max_int = floaty.max_data();
         if(max_int != 0) 
         {
-            cout << "Incorrect result of max_data. Expected \"15.5\" but got : " << max_int << endl;
+            cout << "Incorrect result of max_data. Expected \"0\" but got : " << max_int << endl;
         }
 
         BST<string, string> punct;
@@ -1172,6 +1170,14 @@ void test_max_key()
         if(max_fl != 0) 
         {
             cout << "Incorrect result of max_key of empty BST. Expected 0 but got : " << max_fl << endl;
+        }
+
+        BST<string, string> nada;
+        nada.insert("","");
+        max_str = nada.max_key();
+        if(max_str != "") 
+        {
+            cout << "Incorrect result of max_key of BST with empty string. Expected empty string but got : " << max_str << endl;
         }
 
     } catch(exception& e) {
@@ -2096,7 +2102,7 @@ int main() {
     test_insert();
     test_get();
     //test_remove(); //errors
-    //test_max_data(); //errors
+    test_max_data(); //errors
     test_max_key(); 
     //test_min_data(); //errors
     test_min_key();
