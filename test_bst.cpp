@@ -1,3 +1,7 @@
+// Names: Olivia, Vuong, John
+// test_bst.cpp: testing each function in BST class
+// Date: Oct 2023
+
 #include <stdlib.h>
 #include <iostream>
 #include <math.h>
@@ -1181,6 +1185,12 @@ void test_max_key()
         {
             cout << "Incorrect result of max_key of BST with empty string. Expected empty string but got : " << max_str << endl;
         }
+        nada.insert("", "high five");
+        max_str = nada.max_key();
+        if(max_str != "high five") 
+        {
+            cout << "Incorrect result of max_key of BST. Expected high five but got : " << max_str << endl;
+        }
 
     } catch(exception& e) {
         cerr << "Error in determining key of max node in bst : " << e.what() << endl;
@@ -1537,6 +1547,27 @@ void test_min_key()
         {
             cout << "Incorrect result of min_key of empty BST. Expected 0 but got : " << min_fl << endl;
         }
+
+        BST<string, string> nada;
+        nada.insert("horse", "pokey");
+        nada.insert("green boi", "gumby");
+        nada.insert("goo thing", "goo");
+        nada.insert("green pa", "gumbo");
+        nada.insert("","");
+        nada.insert("self explanatory", "blockheads");
+        min_str = nada.min_key();
+        if(min_str != "") 
+        {
+            cout << "Incorrect result of min_key of BST with empty string. Expected empty string but got : " << min_str << endl;
+        }
+        nada.remove("");
+        min_str = nada.min_key();
+        if(min_str != "blockheads") 
+        {
+            cout << "Incorrect result of min_key of BST. Expected blockheads but got : " << min_str << endl;
+        }
+
+
     } catch(exception& e) {
         cerr << "Error in determining key of min node in bst : " << e.what() << endl;
     }

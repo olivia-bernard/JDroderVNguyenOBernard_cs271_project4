@@ -1,15 +1,12 @@
+// Names: Olivia, Vuong, John
+// bst.h: header file for bst.cpp
+// Date: Oct 2023
+
 #include <iostream>
 #include <string>
 #include <vector>
 #include <stdlib.h>
-
 using namespace std;
-
-// template <typename T1, typename T2>
-// class BST;
-
-// template<typename T1, typename T2>
-// class Node;
 
 #ifndef NODE_H
 #define NODE_H
@@ -45,14 +42,6 @@ class Node
         Node<T1, T2> * p;
 
 };
-// #endif
-
-
-// #ifndef BST_H
-// #define BST_H
-
-// template<class T1, class T2>
-// class BST;
 
 template <typename T1, typename T2> //T1: data, T2: key
 class BST

@@ -1,3 +1,7 @@
+// Names: Olivia, Vuong, John
+// bst.cpp: the big dog file
+// Date: Oct 2023
+
 #include "bst.h"
 #include <string>
 #include <iostream>
